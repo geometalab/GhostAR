@@ -22,12 +22,17 @@ public class GhostCatcher : MonoBehaviour {
 
 		if (isCatched) {
 			Transform transform = gameObject.transform;
-			transform.localScale *= 1f - Time.deltaTime * 0.4f;
-			transform.Rotate (Vector3.forward * timeSinceCatched * 5f);
+			// transform.localScale *= 1f - Time.deltaTime * 0.4f;
+			// transform.Rotate (Vector3.forward * timeSinceCatched * 5f);
+			Vector3 cameraPosition = Camera.main.transform.position;
+			Vector3 targetDestination = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z - 0.5f);
+			transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.2f * timeSinceCatched);
+			transform.localScale *= 1f + Time.deltaTime;
 
 			timeSinceCatched += Time.deltaTime;
 
-			if (timeSinceCatched > 5) {
+			if (transform.position == targetDestination) {
+				Debug.Log (obj_name + " was destroyed");
 				Destroy (gameObject);
 			}
 		}
