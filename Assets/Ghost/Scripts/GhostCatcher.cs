@@ -23,11 +23,11 @@ public class GhostCatcher : MonoBehaviour {
 		if (isCatched) {
 			Transform transform = gameObject.transform;
 			// transform.localScale *= 1f - Time.deltaTime * 0.4f;
-			// transform.Rotate (Vector3.forward * timeSinceCatched * 5f);
+			transform.Rotate (Vector3.forward * timeSinceCatched * 10f);
 			Vector3 cameraPosition = Camera.main.transform.position;
 			Vector3 targetDestination = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z - 0.5f);
-			transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.2f * timeSinceCatched);
-			transform.localScale *= 1f + Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.05f * timeSinceCatched);
+			transform.localScale *= 1f - Time.deltaTime * timeSinceCatched * 1.5f;
 
 			timeSinceCatched += Time.deltaTime;
 
