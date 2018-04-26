@@ -33,6 +33,7 @@ public class GhostCatcher : MonoBehaviour {
 
 			if (transform.position == targetDestination) {
 				Debug.Log (obj_name + " was destroyed");
+				Score.Counter++;
 				Destroy (gameObject);
 			}
 		}
