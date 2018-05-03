@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="geosummit" size="300.000000 42.878788" />
     <ImageTarget name="m_HSR_Campus-39" size="1.000000 0.749333" />
     <ImageTarget name="PolyA" size="40.000000 21.317495" />
   </Tracking>
