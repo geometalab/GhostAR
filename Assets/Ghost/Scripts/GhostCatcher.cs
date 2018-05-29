@@ -1,48 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GhostCatcher : MonoBehaviour {
+public class GhostCatcher : MonoBehaviour
+{
 
-	bool isCatched = false;
-	float timeSinceCatched = 0;
-	Material originalMaterial;
-	Material redMaterial;
-	MeshRenderer meshRenderer;
+	private bool _isCatched = false;
+	private float _timeSinceCatched = 0;
 
-	GameObject baseObject;
-	string obj_name;
+	private static string _colorOfLastCaughtGhost = "undefined";
+
+	private string _ghostColor;
+
 	// Use this for initialization
-	void Start () {
-
-		obj_name 			= this.gameObject.name + "Base";
+	void Start ()
+	{
+		_ghostColor = gameObject.name.Split ('_') [0];
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
-		if (isCatched) {
+		if (_isCatched) {
+
 			Transform transform = gameObject.transform;
-			// transform.localScale *= 1f - Time.deltaTime * 0.4f;
-			transform.Rotate (Vector3.forward * timeSinceCatched * 10f);
+			transform.Rotate (Vector3.forward * _timeSinceCatched * 10f);
 			Vector3 cameraPosition = Camera.main.transform.position;
-			Vector3 targetDestination = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z - 0.5f);
-			transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.05f * timeSinceCatched);
-			transform.localScale *= 1f - Time.deltaTime * timeSinceCatched * 1.5f;
+			Vector3 targetDestination = new Vector3 (cameraPosition.x, cameraPosition.y, cameraPosition.z - 0.5f);
+			transform.position = Vector3.MoveTowards (transform.position, targetDestination, 0.05f * _timeSinceCatched);
+			transform.localScale *= 1f - Time.deltaTime * _timeSinceCatched * 1.5f;
 
-			timeSinceCatched += Time.deltaTime;
+			_timeSinceCatched += Time.deltaTime;
 
 			if (transform.position == targetDestination) {
-				Debug.Log (obj_name + " was destroyed");
-				Score.Counter++;
+				
 				Destroy (gameObject);
+
 			}
+
 		}
 
 	}
 
-	void OnMouseDown(){
+	void OnMouseDown ()
+	{
+		if (gameObject.name.StartsWith (_colorOfLastCaughtGhost)) {
+		
+			return;
 
-		Debug.Log ("OMD " + obj_name);
-		isCatched = true;
+		}
+
+		Score.instance.increment ();
+
+		_colorOfLastCaughtGhost = _ghostColor;
+
+		_isCatched = true;
+
 	}
 }

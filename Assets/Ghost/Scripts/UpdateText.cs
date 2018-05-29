@@ -10,14 +10,14 @@ public class UpdateText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		text.text = 0.ToString();
+		//text.text = 0.ToString();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		text.text = Score.Counter.ToString ();
+		//text.text = Score.Counter.ToString ();
 
 	}
 }
