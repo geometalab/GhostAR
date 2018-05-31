@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 47c7b59a207244147976e173846430df
-timeCreated: 1527512590
+guid: 44bc86dfc9c311e4c86df3f1786aaeb9
+timeCreated: 1527671175
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Cloth
+    2100000: Material_001
     2300000: //RootNode
     3300000: //RootNode
     4300000: Plane

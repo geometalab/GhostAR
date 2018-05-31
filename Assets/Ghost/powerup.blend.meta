@@ -1,16 +1,42 @@
 fileFormatVersion: 2
-guid: a1d95605ef43c8a408d223a52f79354b
-timeCreated: 1527512812
+guid: a081dbbd86bb14142b87b42e67a4b864
+timeCreated: 1527771788
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Cloth
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Plane
+    100000: Cone
+    100002: Cone_001
+    100004: Cone_002
+    100006: Cylinder
+    100008: //RootNode
+    100010: Sphere
+    400000: Cone
+    400002: Cone_001
+    400004: Cone_002
+    400006: Cylinder
+    400008: //RootNode
+    400010: Sphere
+    2100000: Material_004
+    2100002: Material_003
+    2100004: Material_002
+    2100006: Material_001
+    2100008: Material_005
+    2300000: Cone
+    2300002: Cone_001
+    2300004: Cone_002
+    2300006: Cylinder
+    2300008: Sphere
+    3300000: Cone
+    3300002: Cone_001
+    3300004: Cone_002
+    3300006: Cylinder
+    3300008: Sphere
+    4300000: Cone_001
+    4300002: Cone
+    4300004: Sphere
+    4300006: Cylinder
+    4300008: Cone_002
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

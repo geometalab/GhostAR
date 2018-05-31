@@ -7,17 +7,16 @@ public class GhostCatcher : MonoBehaviour
 	private bool _isCatched = false;
 	private float _timeSinceCatched = 0;
 
-	private static string _colorOfLastCaughtGhost = "undefined";
+	public static string _colorOfLastCaughtGhost{ get; set; }
 
 	private string _ghostColor;
 
-	// Use this for initialization
 	void Start ()
 	{
+		_colorOfLastCaughtGhost = "-";
 		_ghostColor = gameObject.name.Split ('_') [0];
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
 
@@ -44,13 +43,21 @@ public class GhostCatcher : MonoBehaviour
 
 	void OnMouseDown ()
 	{
+		if (_isCatched) {
+			return;
+		}
+		Score score = Score.instance;
 		if (gameObject.name.StartsWith (_colorOfLastCaughtGhost)) {
 		
+			score.showProhibitedSign ();
 			return;
 
 		}
 
-		Score.instance.increment ();
+		score.increment ();
+		score.setGhostColorText (_ghostColor);
+
+		score.setTimeOfLastCaughtGhost(Countdown.instance._remainingTime);
 
 		_colorOfLastCaughtGhost = _ghostColor;
 
