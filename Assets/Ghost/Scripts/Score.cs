@@ -43,8 +43,16 @@ public class Score : MonoBehaviour
 
 	public void increment ()
 	{
-		++_score;
+		_score = _score + 2;
 		setCountText ();
+	}
+
+	public void decrease ()
+	{
+
+		--_score;
+		setCountText ();
+
 	}
 
 	public void setGhostColorText (string ghostColor)
@@ -64,7 +72,7 @@ public class Score : MonoBehaviour
 		FinalScore.text = "Geister: " + _score;
 		FinalScore.enabled = true;
 		LastCatchedTime.enabled = true;
-		PlayerPrefs.SetInt("Last Score", _score);
+		PlayerPrefs.SetInt ("Last Score", _score);
 
 	}
 
