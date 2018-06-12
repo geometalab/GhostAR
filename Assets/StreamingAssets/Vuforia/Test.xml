@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="infoGrips" size="1.000000 1.608696" />
+    <ImageTarget name="unigisHSRPlakat" size="1.000000 0.750000" />
+    <ImageTarget name="sogiPlakat" size="1.000000 2.001251" />
+    <ImageTarget name="qgis" size="1.000000 2.001251" />
+    <ImageTarget name="osm" size="1.000000 1.111888" />
+    <ImageTarget name="odsa" size="1.000000 1.362468" />
+    <ImageTarget name="microsoftLaterne" size="1.000000 0.560386" />
+    <ImageTarget name="igs" size="1.000000 1.400754" />
+    <ImageTarget name="glider" size="1.000000 2.051114" />
+    <ImageTarget name="powerup" size="1.000000 0.809959" />
+    <ImageTarget name="exit12" size="1.000000 1.000000" />
+    <ImageTarget name="MicrosoftLogo" size="1.000000 0.213465" />
+    <ImageTarget name="geomatik" size="1.000000 2.272879" />
+    <ImageTarget name="geoSummitSchild" size="1.000000 1.597156" />
+    <ImageTarget name="dataver" size="1.000000 0.653317" />
+    <ImageTarget name="wingtra" size="1.000000 0.363789" />
+    <ImageTarget name="geoBoxLogo" size="1.000000 0.313659" />
+    <ImageTarget name="exit" size="1.000000 0.844544" />
+    <ImageTarget name="geoZone" size="1.000000 0.364557" />
+    <ImageTarget name="geoAdmin" size="1.000000 1.076805" />
+    <ImageTarget name="staedtebau" size="1.000000 0.242453" />
+    <ImageTarget name="informationen" size="1.000000 0.250699" />
+    <ImageTarget name="bernExpo" size="1.000000 0.288546" />
+    <ImageTarget name="achtGradOst" size="1.000000 1.349936" />
+    <ImageTarget name="starkInSystemen" size="1.000000 1.385502" />
+    <ImageTarget name="hsrRucksack" size="1.000000 1.391909" />
+    <ImageTarget name="sogiOsig" size="1.000000 1.358090" />
+    <ImageTarget name="geodaten3dgis" size="1.000000 1.352572" />
+    <ImageTarget name="alters_atlas" size="1.000000 1.362622" />
+    <ImageTarget name="bestePlakat" size="1.000000 1.401752" />
+    <ImageTarget name="gines" size="1.000000 1.399738" />
+    <ImageTarget name="FromImagesToLandCoverMaps" size="1.000000 1.381510" />
+    <ImageTarget name="Test" size="1.000000 1.510025" />
     <ImageTarget name="HSR" size="10.000000 3.910701" />
     <ImageTarget name="UNIGIS" size="1.000000 1.126397" />
     <ImageTarget name="Swisstopo" size="10.000000 2.460396" />
     <ImageTarget name="Esri" size="10.000000 3.589744" />
     <ImageTarget name="geosummit" size="20.000000 2.859696" />
     <ImageTarget name="m_HSR_Campus-39" size="1.000000 0.749333" />
+    <ImageTarget name="PolyA" size="40.000000 21.317495" />
   </Tracking>
 </QCARConfig>

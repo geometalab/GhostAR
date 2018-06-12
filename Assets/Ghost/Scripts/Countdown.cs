@@ -3,38 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Countdown : MonoBehaviour {
+public class Countdown : MonoBehaviour
+{
 
-	public float _remainingTime { get; set; }
-	public static Countdown instance;
+    public float _remainingTime { get; set; }
+    public static Countdown instance;
 
-	public Text countDownText;
+    public Text countDownText;
 
-	void Start ()
-	{
-		if (instance) {
-			Debug.Log ("Warning: Overriding instance reference");
-		}
+    private void Start()
+    {
+        if (instance)
+        {
+            Debug.Log("Warning: Overriding instance reference");
+        }
 
-		instance = this;
-		_remainingTime = 30f;
-	}
+        instance = this;
+        _remainingTime = 600f;
+    }
 
-	void Update()
-	{
+    private void Update()
+    {
 
-		setCountDownTextAndTime();
-		if (_remainingTime <= 0f) {
+        SetCountDownTextAndTime();
+        if (_remainingTime <= 0f)
+        {
 
-			countDownText.enabled = false;
-			Score.instance.activateEndScreen ();
+            countDownText.enabled = false;
+            Score.instance.ActivateEndScreen();
 
-		}
-	}
+        }
+    }
 
-	void setCountDownTextAndTime ()
-	{
-		_remainingTime -= Time.deltaTime;
-		countDownText.text = Mathf.FloorToInt (_remainingTime).ToString ();
-	}
+    /// <summary>
+    /// Calculates the remaining time and updates the UI-Element displaying the time by flooring and parsing the float number into a String
+    /// </summary>
+	public void SetCountDownTextAndTime()
+    {
+        _remainingTime -= Time.deltaTime;
+        countDownText.text = Mathf.FloorToInt(_remainingTime).ToString();
+    }
 }

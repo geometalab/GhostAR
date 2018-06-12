@@ -6,22 +6,24 @@ using UnityEngine.UI;
 public class ProhibitedSign : MonoBehaviour
 {
 
-	private float _timeShown = 0f;
+    private float _timeShown = 0f;
 
-	void Update()
-	{
+    private void Update()
+    {
 
-		Image prohibitedImage = gameObject.GetComponent<Image> ();
+        Image prohibitedImage = gameObject.GetComponent<Image>();
 
-		if (prohibitedImage.enabled) {
-			_timeShown += Time.deltaTime;
+        if (prohibitedImage.enabled)
+        {
+            _timeShown += Time.deltaTime;
 
-			if (_timeShown >= 0.3f) {
+            if (_timeShown >= 0.3f)
+            {
 
-				Debug.Log ("disabled");
-				_timeShown = 0f;
-				prohibitedImage.enabled = false;
-			}
-		}
-	}
+                Debug.Log("disabled");
+                _timeShown = 0f;
+                prohibitedImage.enabled = false;
+            }
+        }
+    }
 }
