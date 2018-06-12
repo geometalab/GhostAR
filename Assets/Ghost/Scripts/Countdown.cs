@@ -15,24 +15,16 @@ public class Countdown : MonoBehaviour
     {
         if (instance)
         {
-            Debug.Log("Warning: Overriding instance reference");
+            Debug.LogWarning("Warning: Overriding instance reference");
         }
 
         instance = this;
-        _remainingTime = 600f;
+        countDownText.enabled = false;
     }
 
     private void Update()
     {
 
-        SetCountDownTextAndTime();
-        if (_remainingTime <= 0f)
-        {
-
-            countDownText.enabled = false;
-            Score.instance.ActivateEndScreen();
-
-        }
     }
 
     /// <summary>

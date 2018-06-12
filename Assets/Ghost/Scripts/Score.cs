@@ -19,6 +19,7 @@ public class Score : MonoBehaviour
     public Text LastCatchedTime;
 
     private int _score = 0;
+    private float _waitingTime = 0f;
 
     private void Start()
     {
@@ -37,6 +38,24 @@ public class Score : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+
+        if (_score >= 2)
+        {
+            _waitingTime += Time.deltaTime;
+
+            if (_waitingTime >= 4)
+            {
+                ActivateEndScreen();
+            }
+
+        }
+
+    }
+
+
+
     /// <summary>
     /// Setting the text for the UI-Element displaying the current score
     /// </summary>
@@ -50,7 +69,7 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void Increment()
     {
-        _score = _score + 2;
+        _score++;
         SetCountText();
     }
 
@@ -92,9 +111,8 @@ public class Score : MonoBehaviour
         ghostColorText.enabled = false;
 
         endScreenBackground.enabled = true;
-        FinalScore.text = "Punkte: " + _score;
+        FinalScore.text = "Geister: " + _score;
         FinalScore.enabled = true;
-        LastCatchedTime.enabled = true;
         PlayerPrefs.SetInt("Last Score", _score);
 
     }
