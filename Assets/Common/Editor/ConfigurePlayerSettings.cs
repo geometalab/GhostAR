@@ -39,10 +39,10 @@ namespace Vuforia.EditorClasses
             androidSymbols = androidSymbols ?? string.Empty;
             if (!androidSymbols.Contains(VUFORIA_ANDROID_SETTINGS))
             {
-                if (PlayerSettings.Android.targetDevice != AndroidTargetDevice.ARMv7)
+                if (PlayerSettings.Android.targetArchitectures != AndroidArchitecture.ARMv7)
                 {
                     Debug.Log("Setting Android target device to ARMv7");
-                    PlayerSettings.Android.targetDevice = AndroidTargetDevice.ARMv7;
+                    PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARMv7;
                 }
 
                 if (PlayerSettings.Android.androidTVCompatibility)
