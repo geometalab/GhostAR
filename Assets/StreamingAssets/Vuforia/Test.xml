@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="Parkplatz" size="1.000000 1.414000" />
+    <ImageTarget name="EyeCam" size="1.000000 1.414414" />
+    <ImageTarget name="sosm" size="1.000000 0.981372" />
+    <ImageTarget name="rangliste" size="1.000000 0.560946" />
+    <ImageTarget name="IFS" size="1.000000 0.242049" />
     <ImageTarget name="DemoPoster" size="1.000000 1.413591" />
+    <ImageTarget name="HSR" size="10.000000 3.910701" />
   </Tracking>
 </QCARConfig>
