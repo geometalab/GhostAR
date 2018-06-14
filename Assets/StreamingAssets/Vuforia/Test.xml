@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="ParkplatzBild" size="1.000000 0.590952" />
+    <ImageTarget name="EyeCamRed" size="1.000000 1.780952" />
+    <ImageTarget name="EyeCamPink" size="1.000000 1.820152" />
+    <ImageTarget name="EyeCamGreen" size="1.000000 1.784730" />
     <ImageTarget name="Parkplatz" size="1.000000 1.414000" />
     <ImageTarget name="EyeCam" size="1.000000 1.414414" />
     <ImageTarget name="sosm" size="1.000000 0.981372" />
