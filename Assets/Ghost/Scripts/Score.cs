@@ -18,6 +18,10 @@ public class Score : MonoBehaviour
     public Text FinalScore;
     public Text LastCatchedTime;
 
+    public Text PowerUpNotAvailable;
+
+    public Button refreshColor;
+
     private int _score = 0;
 
     private void Start()
@@ -34,7 +38,13 @@ public class Score : MonoBehaviour
         prohibitedSign.enabled = false;
         FinalScore.enabled = false;
         LastCatchedTime.enabled = false;
+        PowerUpNotAvailable.enabled = false;
 
+    }
+
+    public void enablePowerup(bool yesnt)
+    {
+        PowerUpNotAvailable.enabled = yesnt;
     }
 
     /// <summary>
@@ -50,7 +60,7 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void Increment()
     {
-        _score = _score + 2;
+        _score = _score + 100;
         SetCountText();
     }
 
@@ -62,7 +72,7 @@ public class Score : MonoBehaviour
         if (_score != 0)
         {
 
-            --_score;
+            _score -= 50;
             SetCountText();
 
         }
@@ -90,6 +100,8 @@ public class Score : MonoBehaviour
 
         countText.enabled = false;
         ghostColorText.enabled = false;
+        PowerUp.show = false;
+        refreshColor.gameObject.SetActive(false);
 
         endScreenBackground.enabled = true;
         FinalScore.text = "Punkte: " + _score;
