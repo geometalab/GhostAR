@@ -19,7 +19,7 @@ public class Countdown : MonoBehaviour
         }
 
         instance = this;
-        _remainingTime = 600f;
+        _remainingTime = 20f;
     }
 
     private void Update()

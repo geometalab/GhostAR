@@ -1,50 +1,97 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
+    int usages = 0;
+    private float _timeShown = 0f;
 
-    private bool _isCatched = false;
-    private float _timeSinceCatched = 0;
-    private Transform tf;
-    private Vector3 originPosition;
+    private Text PowerUpNo;
 
-    private void Start()
+    public void Start()
     {
-
-        tf = gameObject.transform;
-        originPosition = tf.position;
+        PowerUpNo = Score.instance.PowerUpNotAvailable;
     }
 
-    private void Update()
+    private void OnClick()
     {
 
-        if (_isCatched)
+        if(usages < 3)
         {
+            show = true;
+            OnGUI();
+        }
+        else
+        {
+            PowerUpNo.enabled = true;
+        }
+    }
 
-            tf.position += (Vector3.down / 100f) * 1.5f;
-            _timeSinceCatched += Time.deltaTime;
-
-            if (_timeSinceCatched >= 3)
+    public void Update()
+    {
+        if (PowerUpNo)
+        {
+            if (PowerUpNo.enabled)
             {
+                _timeShown += Time.deltaTime;
 
-                tf.position = originPosition;
-                _isCatched = false;
-                _timeSinceCatched = 0;
+                if (_timeShown >= 0.75f)
+                {
 
+                    Debug.Log("disabled");
+                    PowerUpNo.enabled = false;
+
+                    _timeShown = 0f;
+                }
             }
+        }
+    }
 
+
+    private Rect windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
+    // Only show it if needed.
+    public static bool show = false;
+    public GUIStyle headerStyle;
+    public GUIStyle labelStyle;
+    public GUIStyle btnStyle;
+
+    private void OnGUI()
+    {
+        headerStyle = new GUIStyle("window");
+        labelStyle = new GUIStyle("label");
+        btnStyle = new GUIStyle("button");
+
+        headerStyle.border = new RectOffset(10, 10, 10, 10);
+
+        labelStyle.fontSize = 40;
+        labelStyle.alignment = TextAnchor.MiddleCenter;
+
+        btnStyle.fontSize = 40;
+
+        if (show)
+            windowRect = GUI.Window(0, windowRect, DialogWindow, "", headerStyle);
+    }
+
+    // This is the actual window.
+    private void DialogWindow(int windowID)
+    {
+        
+        float y = windowRect.height / 5;
+        GUI.Label(new Rect(5, 5, windowRect.width, 100), "Do you really want to spend 50 points" + "\r\n" + "to reset the last ghost's color?", labelStyle);
+
+
+        if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
+        {
+            GhostCatcher._colorOfLastCaughtGhost = " ";
+            Score.instance.SetGhostColorText(" ");
+            Score.instance.Decrease();
+            Debug.Log("Color reset");
+            usages++;
+            show = false;
         }
 
-    }
-
-    private void OnMouseDown()
-    {
-        _isCatched = true;
-        GhostCatcher._colorOfLastCaughtGhost = "-";
-        Score.instance.SetGhostColorText("-");
-        Score.instance.Decrease();
-
+        if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))
+        {
+            show = false;
+        }
     }
 }
