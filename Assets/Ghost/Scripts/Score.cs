@@ -17,7 +17,7 @@ public class Score : MonoBehaviour
 
     public Text FinalScore;
     public Text LastCatchedTime;
-    
+
 
     public Text PowerUpNotAvailable;
 
@@ -25,6 +25,7 @@ public class Score : MonoBehaviour
 
     public int _score;
     private int _caughtGhosts;
+    private ArrayList _leaderBoardPoints;
 
     private void Start()
     {
@@ -43,6 +44,15 @@ public class Score : MonoBehaviour
         FinalScore.enabled = false;
         LastCatchedTime.enabled = false;
         PowerUpNotAvailable.enabled = false;
+
+        _leaderBoardPoints = new ArrayList();
+        _leaderBoardPoints.Add("Player One Points");
+        _leaderBoardPoints.Add("Player Two Points");
+        _leaderBoardPoints.Add("Player Three Points");
+        _leaderBoardPoints.Add("Player Four Points");
+        _leaderBoardPoints.Add("Player Five Points");
+        _leaderBoardPoints.Add("Player Six Points");
+        _leaderBoardPoints.Add("Player Seven Points");
 
     }
 
@@ -112,7 +122,33 @@ public class Score : MonoBehaviour
         FinalScore.text = "Punkte: " + _score;
         FinalScore.enabled = true;
         LastCatchedTime.enabled = true;
-        PlayerPrefs.SetInt("Last Score", _score);
+        AddScoreToLeaderboard(_score);
+
+    }
+
+    public void AddScoreToLeaderboard(int score)
+    {
+
+        bool added = false;
+        int point = 0;
+
+        foreach (string lbPoint in _leaderBoardPoints)
+        {
+            if (added)
+            {
+                int tempPoint = PlayerPrefs.GetInt(lbPoint);
+                PlayerPrefs.SetInt(lbPoint, point);
+                point = tempPoint;
+                continue;
+            }
+            point = PlayerPrefs.GetInt(lbPoint);
+            if (score != 0 || score > point || !added)
+            {
+                PlayerPrefs.SetInt(lbPoint, score);
+                added = true;
+
+            }
+        }
 
     }
 
