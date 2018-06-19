@@ -6,32 +6,41 @@ using UnityEngine.UI;
 public class Countdown : MonoBehaviour
 {
 
-    public float _remainingTime { get; set; }
+    public float _totalTime;
+    public float _elapsedTime { get; set; }
+    public float _lastCaughtTime;
     public static Countdown instance;
 
     public Text countDownText;
 
     private void Start()
     {
+        _totalTime = 20f;
+        _lastCaughtTime = 0;
         if (instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
 
         instance = this;
-        _remainingTime = 20f;
+        _elapsedTime = 0;
     }
 
     private void Update()
     {
 
         SetCountDownTextAndTime();
-        if (_remainingTime <= 0f)
+        if (_elapsedTime >= _totalTime)
         {
+            
+            if (countDownText.enabled)
+            {
 
-            countDownText.enabled = false;
-            Score.instance.ActivateEndScreen();
+                countDownText.enabled = false;
+                Score.instance._score += Mathf.FloorToInt(_lastCaughtTime);
+                Score.instance.ActivateEndScreen();
 
+            }
         }
     }
 
@@ -40,7 +49,7 @@ public class Countdown : MonoBehaviour
     /// </summary>
 	public void SetCountDownTextAndTime()
     {
-        _remainingTime -= Time.deltaTime;
-        countDownText.text = Mathf.FloorToInt(_remainingTime).ToString();
+        _elapsedTime += Time.deltaTime;
+        countDownText.text = Mathf.FloorToInt(_totalTime - _elapsedTime).ToString();
     }
 }

@@ -17,12 +17,14 @@ public class Score : MonoBehaviour
 
     public Text FinalScore;
     public Text LastCatchedTime;
+    
 
     public Text PowerUpNotAvailable;
 
     public Button refreshColor;
 
-    private int _score = 0;
+    public int _score;
+    private int _caughtGhosts;
 
     private void Start()
     {
@@ -34,6 +36,8 @@ public class Score : MonoBehaviour
 
         instance = this;
         SetCountText();
+        _score = 0;
+        _caughtGhosts = 0;
         endScreenBackground.enabled = false;
         prohibitedSign.enabled = false;
         FinalScore.enabled = false;
@@ -60,7 +64,8 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void Increment()
     {
-        _score = _score + 100;
+        _score += 100;
+        _caughtGhosts++;
         SetCountText();
     }
 
@@ -95,12 +100,12 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void ActivateEndScreen()
     {
-
+        Debug.Log("End: " + PowerUp.instance.usages.ToString());
         VuforiaBehaviour.Instance.enabled = false;
 
         countText.enabled = false;
         ghostColorText.enabled = false;
-        PowerUp.show = false;
+        PowerUp.instance.show = false;
         refreshColor.gameObject.SetActive(false);
 
         endScreenBackground.enabled = true;
@@ -115,9 +120,11 @@ public class Score : MonoBehaviour
     /// Setting the text for the UI-Element displaying the remaining time since the last caught ghost
     /// </summary>
     /// <param name="time">the time when the last ghost was caught</param>
-	public void SetTimeOfLastCaughtGhost(float time)
+	public void SetEndScreenInfo(float time)
     {
-        LastCatchedTime.text = "Letzter Geist:\n" + (Mathf.Ceil(time * 100) * 0.01).ToString() + " Sekunden\nvor Schluss";
+        LastCatchedTime.text = "Geister: " + _caughtGhosts.ToString() + "\n";
+        LastCatchedTime.text += " Zeit: " + (Mathf.Ceil(time * 100) * 0.01).ToString() + " Sekunden \n";
+        LastCatchedTime.text += "Benutzte PowerUps: " + PowerUp.instance.usages.ToString();
     }
 
     /// <summary>
