@@ -22,6 +22,7 @@ public class Score : MonoBehaviour
     public Text PowerUpNotAvailable;
 
     public Button refreshColor;
+    public Button backButton;
 
     public int _score;
     private int _caughtGhosts;
@@ -44,6 +45,7 @@ public class Score : MonoBehaviour
         FinalScore.enabled = false;
         LastCatchedTime.enabled = false;
         PowerUpNotAvailable.enabled = false;
+        backButton.gameObject.SetActive(false);
 
         _leaderBoardPoints = new ArrayList();
         _leaderBoardPoints.Add("Player One Points");
@@ -122,6 +124,7 @@ public class Score : MonoBehaviour
         FinalScore.text = "Punkte: " + _score;
         FinalScore.enabled = true;
         LastCatchedTime.enabled = true;
+        backButton.gameObject.SetActive(true);
         AddScoreToLeaderboard(_score);
 
     }
@@ -146,7 +149,6 @@ public class Score : MonoBehaviour
             {
                 PlayerPrefs.SetInt(lbPoint, score);
                 added = true;
-
             }
         }
 

@@ -6,37 +6,37 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/0-Splash.unity
+    path: 
     guid: 7238041e8d31f4d439b8851a5d4bb6fa
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/1-Menu.unity
+    path: 
     guid: 1763269b9427b4a44957006a02f06c30
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/2-Loading.unity
+    path: 
     guid: 22b8f383624ec49ef986b9155d212ac1
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-CloudReco.unity
+    path: 
     guid: e434bc354d6d54b899b4fbf77b3118a3
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-CylinderTargets.unity
+    path: 
     guid: b336b80db71704028995a1ea175dad4a
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-ImageTargets.unity
+    path: 
     guid: fa05b4f596c584dc79960294a1b601cc
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-MultiTargets.unity
+    path: 
     guid: d5e3b9c64d95e4105b0f8c39cd4dc3bd
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-ObjectReco.unity
+    path: 
     guid: 633a6cb9bd1704671bdefaba667099b2
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-UserDefinedTargets.unity
+    path: 
     guid: 89ed636faaaf34959983482a021ac4e6
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-VirtualButtons.unity
+    path: 
     guid: 319d9b92c918a47e192e3d3382615bc8
   - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-VuMark.unity
+    path: 
     guid: d9b53b25a285640cf8ac170a80603e34
   - enabled: 0
     path: 
@@ -47,3 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ARTestingGu.unity
     guid: 30883dbfb35cac047baf9a79e53b7d58
+  - enabled: 1
+    path: Assets/Leaderboard.unity
+    guid: 8317234eaba0c7a478526e28096cde02
+  m_configObjects: {}
