@@ -2,13 +2,20 @@
 using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
-    int usages = 0;
+    public int usages { get; set;  }
+    public static PowerUp instance;
     private float _timeShown = 0f;
 
     private Text PowerUpNo;
 
     public void Start()
     {
+        if (instance)
+        {
+            Debug.Log("Warning: Overriding instance reference");
+        }
+        instance = this;
+        usages = 0;
         PowerUpNo = Score.instance.PowerUpNotAvailable;
     }
 
@@ -49,7 +56,7 @@ public class PowerUp : MonoBehaviour
 
     private Rect windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
     // Only show it if needed.
-    public static bool show = false;
+    public bool show = false;
     public GUIStyle headerStyle;
     public GUIStyle labelStyle;
     public GUIStyle btnStyle;
@@ -81,11 +88,13 @@ public class PowerUp : MonoBehaviour
 
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {
+            usages++;
+            Score.instance.SetEndScreenInfo(Countdown.instance._lastCaughtTime);
             GhostCatcher._colorOfLastCaughtGhost = " ";
             Score.instance.SetGhostColorText(" ");
             Score.instance.Decrease();
             Debug.Log("Color reset");
-            usages++;
+            Debug.Log(usages.ToString());
             show = false;
         }
 

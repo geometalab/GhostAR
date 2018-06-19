@@ -4,7 +4,7 @@ using System.Collections;
 public class GhostCatcher : MonoBehaviour
 {
 
-    private bool _isCatched = false;
+    private bool _isCaught = false;
     private float _timeSinceCatched = 0;
 
     public static string _colorOfLastCaughtGhost { get; set; }
@@ -20,7 +20,7 @@ public class GhostCatcher : MonoBehaviour
     private void Update()
     {
 
-        if (_isCatched)
+        if (_isCaught)
         {
 
             Transform transform = gameObject.transform;
@@ -48,7 +48,7 @@ public class GhostCatcher : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_isCatched)
+        if (_isCaught)
         {
             return;
         }
@@ -63,12 +63,12 @@ public class GhostCatcher : MonoBehaviour
 
         score.Increment();
         score.SetGhostColorText(_ghostColor);
-
-        score.SetTimeOfLastCaughtGhost(Countdown.instance._remainingTime);
+        Countdown.instance._lastCaughtTime = Countdown.instance._elapsedTime;
+        score.SetEndScreenInfo(Countdown.instance._lastCaughtTime);
 
         _colorOfLastCaughtGhost = _ghostColor;
 
-        _isCatched = true;
+        _isCaught = true;
 
     }
 }
