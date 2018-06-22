@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class UsernameInput : MonoBehaviour {
 
-    private InputField InputFieldUsername;
+    public InputField InputFieldUsername;
     public string Username;
     public static UsernameInput instance;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
-        InputFieldUsername = GameObject.Find("Input Field").GetComponent<InputField>();
+        InputFieldUsername.gameObject.SetActive(false);
     }
 
     public void GetuserInput(string username)
     {
         Username = username;
-        InputFieldUsername.DeactivateInputField();
     }
 }

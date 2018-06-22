@@ -15,7 +15,7 @@ public class Countdown : MonoBehaviour
 
     private void Start()
     {
-        _totalTime = 20f;
+        _totalTime = 7f;
         _lastCaughtTime = 0;
         if (instance)
         {
