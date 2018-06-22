@@ -80,8 +80,6 @@ public class EndScreen : MonoBehaviour {
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
             score.AddScoreToLeaderboard(score._score);
-            backButton.gameObject.SetActive(true);
-
         }
         SetEndScreenPoints();
         Countdown.instance.gameHasEnded = true;

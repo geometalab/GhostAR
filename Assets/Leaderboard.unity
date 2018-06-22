@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 1760435186}
+  username: {fileID: 1660074250}
 --- !u!114 &20632503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 1350628320}
+  username: {fileID: 847432646}
 --- !u!114 &20632504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 705684149}
+  username: {fileID: 2108639434}
 --- !u!114 &20632505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 2105482010}
+  username: {fileID: 475471759}
 --- !u!114 &20632506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 1700179678}
+  username: {fileID: 1796919288}
 --- !u!114 &20632507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 840937389}
+  username: {fileID: 1331881404}
 --- !u!114 &20632508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 1733351715}
+  username: {fileID: 1208749464}
 --- !u!1 &164409280
 GameObject:
   m_ObjectHideFlags: 0

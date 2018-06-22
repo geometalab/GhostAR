@@ -7,6 +7,7 @@ public class Leaderboard : MonoBehaviour
 {
 
     public Text point;
+    public Text username;
     
     private void Start()
     {
@@ -19,6 +20,11 @@ public class Leaderboard : MonoBehaviour
         if (savedPoint != 0)
         {
             point.text = savedPoint.ToString();
+        }
+
+        string savedUsername = PlayerPrefs.GetString(username.name, "");
+        if (!string.IsNullOrEmpty(savedUsername)) {
+            username.text = savedUsername;
         }
     }
 }

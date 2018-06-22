@@ -22,6 +22,9 @@ public class Score : MonoBehaviour
     public int _score;
     public int _caughtGhosts;
     private ArrayList _leaderBoardPoints;
+    private string _username;
+    private InputField usernameInputField;
+    public Button submitUsernameButton;
 
     private void Awake()
     {
@@ -36,13 +39,17 @@ public class Score : MonoBehaviour
     private void Start()
     {
         VuforiaBehaviour.Instance.enabled = true;
-       
+
         SetCountText();
         _score = 0;
         _caughtGhosts = 0;
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
+        _username = "Player Unknown";
+        usernameInputField = UsernameInput.instance.InputFieldUsername;
+        submitUsernameButton.gameObject.SetActive(false);
+        submitUsernameButton.onClick.AddListener(OnSubmit);
 
         _leaderBoardPoints = new ArrayList();
         _leaderBoardPoints.Add("Player One Points");
@@ -53,6 +60,16 @@ public class Score : MonoBehaviour
         _leaderBoardPoints.Add("Player Six Points");
         _leaderBoardPoints.Add("Player Seven Points");
 
+    }
+
+    private void OnSubmit()
+    {
+        if (usernameInputField.text != "") {
+            PlayerPrefs.SetString(_username, usernameInputField.text);
+            usernameInputField.gameObject.SetActive(false);
+            submitUsernameButton.gameObject.SetActive(false);
+            EndScreen.instance.backButton.gameObject.SetActive(true);
+        }
     }
 
     public void enablePowerup(bool yesnt)
@@ -107,25 +124,36 @@ public class Score : MonoBehaviour
 
         bool added = false;
         int point = 0;
+        string username = "";
 
         foreach (string lbPoint in _leaderBoardPoints)
         {
+            string[] playerName = lbPoint.Split(' ');
+
             if (added)
             {
                 int tempPoint = PlayerPrefs.GetInt(lbPoint);
+                string tempUsername = PlayerPrefs.GetString(playerName[0] + " " + playerName[1]);
                 PlayerPrefs.SetInt(lbPoint, point);
+                PlayerPrefs.SetString(playerName[0] + " " + playerName[1], username);
                 point = tempPoint;
+                username = tempUsername;
                 continue;
             }
             point = PlayerPrefs.GetInt(lbPoint);
             if (score != 0 && score > point && !added)
             {
-                while (string.IsNullOrEmpty(UsernameInput.instance.Username)) { }
+                Debug.Log("New Record!");
                 PlayerPrefs.SetInt(lbPoint, score);
-                string[] playerName = lbPoint.Split(' ');
-                PlayerPrefs.SetString(playerName[0] + " " + playerName[1], UsernameInput.instance.Username);
+                _username = playerName[0] + " " + playerName[1];
                 added = true;
+                submitUsernameButton.gameObject.SetActive(true);
+                usernameInputField.gameObject.SetActive(true);
             }
+        }
+        if (!added)
+        {
+            EndScreen.instance.backButton.gameObject.SetActive(true);
         }
     }
     /// <summary>
