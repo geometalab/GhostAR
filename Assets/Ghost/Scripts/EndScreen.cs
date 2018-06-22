@@ -75,7 +75,8 @@ public class EndScreen : MonoBehaviour {
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
-            
+            score.AddScoreToLeaderboard(score._score);
+
         }
         SetEndScreenPoints();
         Countdown.instance.gameHasEnded = true;

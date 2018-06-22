@@ -22,6 +22,7 @@ public class Score : MonoBehaviour
 
     public int _score;
     public int _caughtGhosts;
+    private ArrayList _leaderBoardPoints;
 
     private void Awake()
     {
@@ -43,6 +44,15 @@ public class Score : MonoBehaviour
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
+
+        _leaderBoardPoints = new ArrayList();
+        _leaderBoardPoints.Add("Player One Points");
+        _leaderBoardPoints.Add("Player Two Points");
+        _leaderBoardPoints.Add("Player Three Points");
+        _leaderBoardPoints.Add("Player Four Points");
+        _leaderBoardPoints.Add("Player Five Points");
+        _leaderBoardPoints.Add("Player Six Points");
+        _leaderBoardPoints.Add("Player Seven Points");
 
     }
 
@@ -93,6 +103,30 @@ public class Score : MonoBehaviour
         ghostColorText.text = ghostColor;
     }
 
+    public void AddScoreToLeaderboard(int score)
+    {
+
+        bool added = false;
+        int point = 0;
+
+        foreach (string lbPoint in _leaderBoardPoints)
+        {
+            if (added)
+            {
+                int tempPoint = PlayerPrefs.GetInt(lbPoint);
+                PlayerPrefs.SetInt(lbPoint, point);
+                point = tempPoint;
+                continue;
+            }
+            point = PlayerPrefs.GetInt(lbPoint);
+            if (score != 0 || score > point || !added)
+            {
+                PlayerPrefs.SetInt(lbPoint, score);
+                added = true;
+
+            }
+        }
+    }
     /// <summary>
     /// Enables the image ProhibitedSign
     /// </summary>
