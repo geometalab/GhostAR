@@ -15,7 +15,6 @@ public class Score : MonoBehaviour
     public UnityEngine.UI.Image prohibitedSign;
 
     public Text prohibitedInfo;
-
     public Text PowerUpNotAvailable;
 
     public Button refreshColor;
@@ -119,9 +118,12 @@ public class Score : MonoBehaviour
                 continue;
             }
             point = PlayerPrefs.GetInt(lbPoint);
-            if (score != 0 || score > point || !added)
+            if (score != 0 && score > point && !added)
             {
+                while (string.IsNullOrEmpty(UsernameInput.instance.Username)) { }
                 PlayerPrefs.SetInt(lbPoint, score);
+                string[] playerName = lbPoint.Split(' ');
+                PlayerPrefs.SetString(playerName[0] + " " + playerName[1], UsernameInput.instance.Username);
                 added = true;
             }
         }
