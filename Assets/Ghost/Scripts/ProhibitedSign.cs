@@ -17,11 +17,11 @@ public class ProhibitedSign : MonoBehaviour
         {
             _timeShown += Time.deltaTime;
 
-            if (_timeShown >= 0.3f)
+            if (_timeShown >= 1f)
             {
-
                 Debug.Log("disabled");
                 _timeShown = 0f;
+                Score.instance.prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;
             }
         }

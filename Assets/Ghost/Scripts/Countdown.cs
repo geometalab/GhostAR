@@ -13,33 +13,49 @@ public class Countdown : MonoBehaviour
 
     public Text countDownText;
 
-    private void Start()
+    public bool gameHasEnded;
+
+    public bool hasWaited;
+
+    private void Awake()
     {
-        _totalTime = 20f;
-        _lastCaughtTime = 0;
         if (instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
 
         instance = this;
+    }
+
+    private void Start()
+    {
+        gameHasEnded = false;
+        _totalTime = 300f;
+        _lastCaughtTime = 0;
+
+        hasWaited = false;
+
         _elapsedTime = 0;
     }
 
     private void Update()
     {
-
-        SetCountDownTextAndTime();
-        if (_elapsedTime >= _totalTime)
+        if (!gameHasEnded)
         {
-            
-            if (countDownText.enabled)
+            SetCountDownTextAndTime();
+            if (_elapsedTime >= _totalTime - 1)
             {
-
+                gameHasEnded = true;
+            }
+        }
+        else
+        {
+            EndScreen.instance.SetEndScreenInfo();
+            if(!EndScreen.instance.hasBeenBuilt)
+            {
                 countDownText.enabled = false;
-                Score.instance._score += Mathf.FloorToInt(_lastCaughtTime);
-                Score.instance.ActivateEndScreen();
-
+                EndScreen.instance.baseScore = Score.instance._score;
+                EndScreen.instance.ActivateEndScreen();
             }
         }
     }
