@@ -30,7 +30,7 @@ public class Countdown : MonoBehaviour
     private void Start()
     {
         gameHasEnded = false;
-        _totalTime = 300f;
+        _totalTime = 5f;
         _lastCaughtTime = 0;
 
         hasWaited = false;

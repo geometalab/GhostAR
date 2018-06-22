@@ -123,7 +123,6 @@ public class Score : MonoBehaviour
             {
                 PlayerPrefs.SetInt(lbPoint, score);
                 added = true;
-
             }
         }
     }

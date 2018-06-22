@@ -15,6 +15,8 @@ public class EndScreen : MonoBehaviour {
 
     Score score;
 
+    public Button backButton;
+
     public int baseScore;
     public bool hasWaited;
     public bool hasBeenBuilt;
@@ -40,6 +42,8 @@ public class EndScreen : MonoBehaviour {
         hasWaited = false;
 
         hasBeenBuilt = false;
+        backButton.gameObject.SetActive(false);
+
 
         endScreenBackground.enabled = false;
         FinalScore.enabled = false;
@@ -76,6 +80,7 @@ public class EndScreen : MonoBehaviour {
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
             score.AddScoreToLeaderboard(score._score);
+            backButton.gameObject.SetActive(true);
 
         }
         SetEndScreenPoints();
