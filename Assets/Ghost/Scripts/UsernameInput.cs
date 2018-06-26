@@ -15,6 +15,10 @@ public class UsernameInput : MonoBehaviour {
         InputFieldUsername.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Method that gets called when the user types in a username
+    /// </summary>
+    /// <param name="username">The username that got typed in</param>
     public void GetuserInput(string username)
     {
         Username = username;

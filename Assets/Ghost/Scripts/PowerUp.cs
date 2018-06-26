@@ -47,8 +47,7 @@ public class PowerUp : MonoBehaviour
 
                 if (_timeShown >= 0.75f)
                 {
-
-                    Debug.Log("disabled");
+                    
                     PowerUpNo.enabled = false;
 
                     _timeShown = 0f;
@@ -96,8 +95,6 @@ public class PowerUp : MonoBehaviour
             GhostCatcher._colorOfLastCaughtGhost = " ";
             Score.instance.SetGhostColorText(" ");
             Score.instance.Decrease();
-            Debug.Log("Color reset");
-            Debug.Log(usages.ToString());
             show = false;
             EndScreen.instance.SetEndScreenInfo();
         }

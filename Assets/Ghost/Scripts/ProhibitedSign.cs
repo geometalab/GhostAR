@@ -19,7 +19,6 @@ public class ProhibitedSign : MonoBehaviour
 
             if (_timeShown >= 1f)
             {
-                Debug.Log("disabled");
                 _timeShown = 0f;
                 Score.instance.prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;

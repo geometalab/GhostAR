@@ -123,7 +123,6 @@ public class EndScreen : MonoBehaviour {
                 if (_timeWaited >= 1f)
                 {
                     hasWaited = true;
-                    Debug.Log("Waited for 1 second.");
                 }
                 return;
             }

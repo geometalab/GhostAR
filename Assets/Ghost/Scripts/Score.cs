@@ -86,7 +86,7 @@ public class Score : MonoBehaviour
     }
 
     /// <summary>
-    /// Adding two points to the _score variable and updating the UI-Element displaying the current score
+    /// Adding 100 points to the _score variable and updating the UI-Element displaying the current score
     /// </summary>
 	public void Increment()
     {
@@ -96,7 +96,7 @@ public class Score : MonoBehaviour
     }
 
     /// <summary>
-    /// Decreasing the number of points by 1 and updating the UI-Element displaying the current score
+    /// Decreasing the number of points by 50 and updating the UI-Element displaying the current score
     /// </summary>
 	public void Decrease()
     {
@@ -119,6 +119,12 @@ public class Score : MonoBehaviour
         ghostColorText.text = ghostColor;
     }
 
+    /// <summary>
+    /// Method that compares the score with the saved scores of the leaderboard. 
+    /// If the user reached a score high enough for the leaderboard. 
+    /// He will be added and the rest of the scores will be moved down.
+    /// </summary>
+    /// <param name="score">The score the user made</param>
     public void AddScoreToLeaderboard(int score)
     {
 
@@ -143,12 +149,12 @@ public class Score : MonoBehaviour
             point = PlayerPrefs.GetInt(lbPoint);
             if (score != 0 && score > point && !added)
             {
-                Debug.Log("New Record!");
                 PlayerPrefs.SetInt(lbPoint, score);
                 _username = playerName[0] + " " + playerName[1];
                 added = true;
                 submitUsernameButton.gameObject.SetActive(true);
                 usernameInputField.gameObject.SetActive(true);
+                Debug.Log("Score saved in leaderbaord");
             }
         }
         if (!added)
@@ -157,7 +163,7 @@ public class Score : MonoBehaviour
         }
     }
     /// <summary>
-    /// Enables the image ProhibitedSign
+    /// Enables the image ProhibitedSign and the message beneath it
     /// </summary>
 	public void ShowProhibited()
     {
