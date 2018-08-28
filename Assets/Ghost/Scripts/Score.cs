@@ -22,7 +22,7 @@ public class Score : MonoBehaviour
     public int _score;
     public int _caughtGhosts;
     private ArrayList _leaderBoardPoints;
-    private string _username;
+    private string _arrayListValueOfHighscore;
     private InputField usernameInputField;
     public Button submitUsernameButton;
 
@@ -46,7 +46,7 @@ public class Score : MonoBehaviour
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
-        _username = "Player Unknown";
+        _arrayListValueOfHighscore = "Player Unknown";
         usernameInputField = UsernameInput.instance.InputFieldUsername;
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
@@ -65,7 +65,7 @@ public class Score : MonoBehaviour
     private void OnSubmit()
     {
         if (usernameInputField.text != "") {
-            PlayerPrefs.SetString(_username, usernameInputField.text);
+            PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
             EndScreen.instance.backButton.gameObject.SetActive(true);
@@ -140,23 +140,32 @@ public class Score : MonoBehaviour
             {
                 int tempPoint = PlayerPrefs.GetInt(lbPoint);
                 string tempUsername = PlayerPrefs.GetString(playerName[0] + " " + playerName[1]);
+
                 PlayerPrefs.SetInt(lbPoint, point);
                 PlayerPrefs.SetString(playerName[0] + " " + playerName[1], username);
+
                 point = tempPoint;
                 username = tempUsername;
+
                 continue;
             }
+
             point = PlayerPrefs.GetInt(lbPoint);
+
             if (score != 0 && score > point && !added)
             {
                 PlayerPrefs.SetInt(lbPoint, score);
-                _username = playerName[0] + " " + playerName[1];
+
+                _arrayListValueOfHighscore = playerName[0] + " " + playerName[1];
+                username = PlayerPrefs.GetString(playerName[0] + " " + playerName[1]);
+
                 added = true;
+
                 submitUsernameButton.gameObject.SetActive(true);
                 usernameInputField.gameObject.SetActive(true);
-                Debug.Log("Score saved in leaderbaord");
             }
         }
+
         if (!added)
         {
             EndScreen.instance.backButton.gameObject.SetActive(true);

@@ -51,14 +51,7 @@ public class EndScreen : MonoBehaviour {
 
         _timeWaited = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if(Countdown.instance.gameHasEnded && hasBeenBuilt)
-        {
-            giveTimeBonus();
-        }
-	}
+
     /// <summary>
     /// Method disabling the Vuforia instance and some UI-Elements
     /// After that it enables the UI-Elements used to display the final score and the remaining since the last caught ghost
@@ -79,6 +72,18 @@ public class EndScreen : MonoBehaviour {
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
+            int endscore = baseScore + Mathf.FloorToInt(Countdown.instance._totalTime - Countdown.instance._lastCaughtTime);
+            if(score._score > 0)
+            {
+                for (; ;)
+                {
+                    if(score._score < endscore)
+                    {
+                        score._score++;
+                    }
+                    else break;
+                }
+            }
             score.AddScoreToLeaderboard(score._score);
         }
         SetEndScreenPoints();
@@ -106,34 +111,6 @@ public class EndScreen : MonoBehaviour {
             LastCaughtTime.text = "Geister: " + score._caughtGhosts.ToString() + "\n";
             LastCaughtTime.text += " Zeit: " + (Mathf.Ceil(Countdown.instance._lastCaughtTime * 100) * 0.01).ToString() + " Sekunden \n";
             LastCaughtTime.text += "Benutzte PowerUps: " + PowerUp.instance.usages.ToString();
-        }
-    }
-
-    /// <summary>
-    /// After the game has ended, this will wait 1 second and then add a time bonus to the score.
-    /// The time bonus is 1 point per second the player had left when they caught the last ghost.
-    /// </summary>
-    public void giveTimeBonus()
-    {
-        if(score._caughtGhosts > 0)
-        {
-            if(!hasWaited)
-            {
-                _timeWaited += Time.deltaTime;
-                if (_timeWaited >= 1f)
-                {
-                    hasWaited = true;
-                }
-                return;
-            }
-
-            int endscore = baseScore + Mathf.FloorToInt(Countdown.instance._totalTime - Countdown.instance._lastCaughtTime);
-            if (score._score < endscore)
-            {
-                score._score++;
-                SetEndScreenPoints();
-                PlayerPrefs.SetInt("Last Score", score._score);
-            }
         }
     }
 }
