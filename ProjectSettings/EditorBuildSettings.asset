@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: c825f09ebb5348047b08f5aa3b27e72a
   - enabled: 1
-    path: Assets/ARTestingGu.unity
+    path: Assets/Scenes/GhostAR.unity
     guid: 30883dbfb35cac047baf9a79e53b7d58
   - enabled: 1
-    path: Assets/Leaderboard.unity
+    path: Assets/Scenes/Leaderboard.unity
     guid: 8317234eaba0c7a478526e28096cde02
   m_configObjects: {}
