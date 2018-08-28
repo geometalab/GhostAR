@@ -934,7 +934,6 @@ GameObject:
   - component: {fileID: 794640952}
   - component: {fileID: 794640951}
   - component: {fileID: 794640953}
-  - component: {fileID: 794640954}
   - component: {fileID: 794640955}
   - component: {fileID: 794640956}
   m_Layer: 0
@@ -1275,17 +1274,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
---- !u!114 &794640954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794640945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7914788e42e54a09ac79ed2629dfb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &794640955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1401,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 766021d870f34a3db5a3d86ccaaf4d69, type: 3}
+        m_Texture: {fileID: 2800000, guid: cb5e4b8c40f945caa555d2ed02ff032e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
