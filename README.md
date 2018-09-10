@@ -51,15 +51,13 @@ If you want to test the app with Unity, you need a functional camera. Then you j
 
 ## Building the APK
 
-The last step is to build the APK onto your phone. First connect your phone with a USB to your PC. Then you have open the build settings (Ctrl + Shift + B) and select "Android" as your platform and also select all scenes in the build.
+The last step is to build the APK onto your phone. First connect your phone to your PC via USB. Make sure you have USB debugging enabled in your developer settings (Don't know how to do that? Click ![Here](https://www.kingoapp.com/root-tutorials/how-to-enable-usb-debugging-mode-on-android.htm). Then you open the build settings (Ctrl + Shift + B) and select "Android" as your platform and also select all scenes in the build.
 
 ![](https://md.coredump.ch/uploads/upload_b14e80f74558ab1856433d657a903111.png)
 
 _Figure 3_
 
-Now open the "Player Settings..." (on the bottom left in figure 3) and make sure that under "Other Settings -> Identifaction" the prerequistes aren't higher than your phone specifications. Also verify if under "XR Settings" the box "Vuforia Augmented Reality Support" is checked.
-
-On your phone you have to activate the developer options and enable "USB debugging". Otherwise your phone is not able to build the app.
+Now open the "Player Settings..." (on the bottom left in figure 3) and make sure that under "Other Settings -> Identifaction" the prerequistes aren't higher than your phone specifications. Also make sure that the box "Vuforia Augmented Reality Support" in "XR Settings" is checked.
 
 If you made sure everything is in order, you can press the button "Build and Run".
 
