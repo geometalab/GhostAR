@@ -74,13 +74,13 @@ namespace HSR.GhostAR.GameTime
             countDownText.text = Mathf.FloorToInt(_totalTime - _elapsedTime).ToString();
         }
 
-        public int getTimeBonus()
+        public int GetTimeBonus()
         {
             int timeBonus = Mathf.FloorToInt(_totalTime - _lastCaughtTime);
             return timeBonus;
         }
 
-        public float getCentisecondOfLastCaughtGhost()
+        public float GetCentisecondOfLastCaughtGhost()
         {
             return Mathf.Ceil(_lastCaughtTime * 100);
         }
