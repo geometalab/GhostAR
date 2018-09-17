@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ProhibitedSign : MonoBehaviour
@@ -20,7 +18,7 @@ public class ProhibitedSign : MonoBehaviour
             if (_timeShown >= 1f)
             {
                 _timeShown = 0f;
-                Score.instance.prohibitedInfo.enabled = false;
+                Score.s_instance.prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;
             }
         }

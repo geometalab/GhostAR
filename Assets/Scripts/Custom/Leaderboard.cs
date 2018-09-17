@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
@@ -8,7 +6,7 @@ public class Leaderboard : MonoBehaviour
 
     public Text point;
     public Text username;
-    
+
     private void Start()
     {
         UpdateLeaderboardText();
@@ -23,7 +21,8 @@ public class Leaderboard : MonoBehaviour
         }
 
         string savedUsername = PlayerPrefs.GetString(username.name, "");
-        if (!string.IsNullOrEmpty(savedUsername)) {
+        if (!string.IsNullOrEmpty(savedUsername))
+        {
             username.text = savedUsername;
         }
     }

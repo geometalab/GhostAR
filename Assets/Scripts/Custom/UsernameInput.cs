@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UsernameInput : MonoBehaviour {
+public class UsernameInput : MonoBehaviour
+{
 
     public InputField InputFieldUsername;
     public string Username;
-    public static UsernameInput instance;
+    public static UsernameInput s_instance;
 
     private void Awake()
     {
-        instance = this;
+        s_instance = this;
         InputFieldUsername.gameObject.SetActive(false);
     }
 

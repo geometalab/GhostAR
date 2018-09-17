@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GhostCatcher : MonoBehaviour
 {
@@ -7,13 +6,14 @@ public class GhostCatcher : MonoBehaviour
     private bool _isCaught = false;
     private float _timeSinceCatched = 0;
 
-    public static string _colorOfLastCaughtGhost { get; set; }
+    // why public? why static?
+    public static string colorOfLastCaughtGhost { get; set; }
 
     private string _ghostColor;
 
     private void Start()
     {
-        _colorOfLastCaughtGhost = " ";
+        colorOfLastCaughtGhost = " ";
         _ghostColor = gameObject.name.Split('_')[0];
     }
 
@@ -22,7 +22,6 @@ public class GhostCatcher : MonoBehaviour
 
         if (_isCaught)
         {
-
             Transform transform = gameObject.transform;
 
             transform.Rotate(Vector3.forward * _timeSinceCatched * 10f);
@@ -37,9 +36,7 @@ public class GhostCatcher : MonoBehaviour
 
             if (transform.position == targetDestination)
             {
-
                 Destroy(gameObject);
-
             }
 
         }
@@ -52,21 +49,17 @@ public class GhostCatcher : MonoBehaviour
         {
             return;
         }
-        Score score = Score.instance;
-        if (gameObject.name.StartsWith(_colorOfLastCaughtGhost))
+        Score score = Score.s_instance;
+        if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
         {
-
             score.ShowProhibited();
             return;
-
         }
 
         score.Increment();
         score.SetGhostColorText(_ghostColor);
-        Countdown.instance._lastCaughtTime = Countdown.instance._elapsedTime;
-
-        _colorOfLastCaughtGhost = _ghostColor;
-
+        HSR.GhostAR.GameTime.Countdown.s_instance.SetLastCaughtTime();
+        colorOfLastCaughtGhost = _ghostColor;
         _isCaught = true;
     }
 }
