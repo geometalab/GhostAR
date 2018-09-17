@@ -27,7 +27,7 @@ public class PowerUp : MonoBehaviour
     private void OnClick()
     {
 
-        if(usages < 3)
+        if (usages < 3)
         {
             show = true;
         }
@@ -47,7 +47,6 @@ public class PowerUp : MonoBehaviour
 
                 if (_timeShown >= 0.75f)
                 {
-                    
                     PowerUpNo.enabled = false;
 
                     _timeShown = 0f;
@@ -78,16 +77,16 @@ public class PowerUp : MonoBehaviour
         btnStyle.fontSize = 40;
 
         if (show)
+        {
             windowRect = GUI.Window(0, windowRect, DialogWindow, "", headerStyle);
+        }
     }
 
     // This is the actual window.
     private void DialogWindow(int windowID)
     {
-        
         float y = windowRect.height / 5;
         GUI.Label(new Rect(5, 5, windowRect.width, 100), "Do you really want to spend 50 points" + "\r\n" + "to reset the last ghost's color?", labelStyle);
-
 
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {

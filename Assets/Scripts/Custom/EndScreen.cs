@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
 
-public class EndScreen : MonoBehaviour {
+public class EndScreen : MonoBehaviour
+{
 
     public static EndScreen s_instance;
 
@@ -32,8 +31,8 @@ public class EndScreen : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-
+    void Start()
+    {
         _score = Score.s_instance;
 
         baseScore = 0;
@@ -57,7 +56,7 @@ public class EndScreen : MonoBehaviour {
     /// </summary>
 	public void ActivateEndScreen()
     {
-        if(!hasBeenBuilt)
+        if (!hasBeenBuilt)
         {
             Debug.Log("End: " + PowerUp.s_instance.usages.ToString());
             VuforiaBehaviour.Instance.enabled = false;
@@ -71,15 +70,18 @@ public class EndScreen : MonoBehaviour {
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
             int endscore = baseScore + Mathf.FloorToInt(Countdown.s_instance.totalTime - Countdown.s_instance.lastCaughtTime);
-            if(_score.score > 0)
+            if (_score.score > 0)
             {
-                for (; ;)
+                for (; ; )
                 {
-                    if(_score.score < endscore)
+                    if (_score.score < endscore)
                     {
                         _score.score++;
                     }
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
             }
             _score.AddScoreToLeaderboard(_score.score);
@@ -103,8 +105,8 @@ public class EndScreen : MonoBehaviour {
     /// </summary>
 	public void SetEndScreenInfo()
     {
-        
-        if(_score.caughtGhosts != 0)
+
+        if (_score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
             LastCaughtTime.text += " Zeit: " + (Mathf.Ceil(Countdown.s_instance.lastCaughtTime * 100) * 0.01).ToString() + " Sekunden \n";

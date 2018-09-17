@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
@@ -9,7 +7,7 @@ public class Countdown : MonoBehaviour
     public float totalTime;
     public float elapsedTime { get; set; }
     public float lastCaughtTime;
-    
+
     public bool gameHasEnded;
     public bool hasWaited;
 
@@ -48,7 +46,7 @@ public class Countdown : MonoBehaviour
         else
         {
             EndScreen.s_instance.SetEndScreenInfo();
-            if(!EndScreen.s_instance.hasBeenBuilt)
+            if (!EndScreen.s_instance.hasBeenBuilt)
             {
                 countDownText.enabled = false;
                 EndScreen.s_instance.baseScore = Score.s_instance.score;

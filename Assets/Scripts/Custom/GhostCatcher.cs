@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GhostCatcher : MonoBehaviour
 {
@@ -23,7 +22,6 @@ public class GhostCatcher : MonoBehaviour
 
         if (_isCaught)
         {
-
             Transform transform = gameObject.transform;
 
             transform.Rotate(Vector3.forward * _timeSinceCatched * 10f);
@@ -38,9 +36,7 @@ public class GhostCatcher : MonoBehaviour
 
             if (transform.position == targetDestination)
             {
-
                 Destroy(gameObject);
-
             }
 
         }
@@ -56,18 +52,14 @@ public class GhostCatcher : MonoBehaviour
         Score score = Score.s_instance;
         if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
         {
-
             score.ShowProhibited();
             return;
-
         }
 
         score.Increment();
         score.SetGhostColorText(_ghostColor);
         Countdown.s_instance.lastCaughtTime = Countdown.s_instance.elapsedTime;
-
         colorOfLastCaughtGhost = _ghostColor;
-
         _isCaught = true;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
@@ -65,7 +64,8 @@ public class Score : MonoBehaviour
 
     private void OnSubmit()
     {
-        if (usernameInputField.text != "") {
+        if (usernameInputField.text != "")
+        {
             PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
