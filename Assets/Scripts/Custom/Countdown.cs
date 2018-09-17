@@ -11,7 +11,8 @@ namespace HSR.GhostAR.GameTime
         private float _lastCaughtTime;
 
         public bool gameHasEnded { get; set; }
-        public Text countDownText;
+        [SerializeField]
+        private Text countDownText;
         public static Countdown s_instance;
 
         public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, Text countDownText)
