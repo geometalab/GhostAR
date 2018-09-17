@@ -58,7 +58,7 @@ public class GhostCatcher : MonoBehaviour
 
         score.Increment();
         score.SetGhostColorText(_ghostColor);
-        Countdown.s_instance.lastCaughtTime = Countdown.s_instance.elapsedTime;
+        HSR.GhostAR.GameTime.Countdown.s_instance.SetLastCaughtTime();
         colorOfLastCaughtGhost = _ghostColor;
         _isCaught = true;
     }

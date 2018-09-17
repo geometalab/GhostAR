@@ -84,5 +84,10 @@ namespace HSR.GhostAR.GameTime
         {
             return Mathf.Ceil(_lastCaughtTime * 100);
         }
+
+        public void SetLastCaughtTime()
+        {
+            _lastCaughtTime = _elapsedTime;
+        }
     }
 }
