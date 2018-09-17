@@ -7,47 +7,48 @@ using Vuforia;
 public class Score : MonoBehaviour
 {
 
-    public static Score instance;
+    public static Score s_instance;
+
+    public UnityEngine.UI.Image prohibitedSign;
 
     public Text countText;
     public Text ghostColorText;
 
-    public UnityEngine.UI.Image prohibitedSign;
-
     public Text prohibitedInfo;
     public Text PowerUpNotAvailable;
 
+    public Button submitUsernameButton;
     public Button refreshColor;
 
-    public int _score;
-    public int _caughtGhosts;
+    public int score;
+    public int caughtGhosts;
+
     private ArrayList _leaderBoardPoints;
     private string _arrayListValueOfHighscore;
     private InputField usernameInputField;
-    public Button submitUsernameButton;
 
     private void Awake()
     {
-        if (instance)
+        if (s_instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
 
-        instance = this;
+        s_instance = this;
     }
 
     private void Start()
     {
         VuforiaBehaviour.Instance.enabled = true;
 
-        SetCountText();
-        _score = 0;
-        _caughtGhosts = 0;
+        UpdateCountText();
+        score = 0;
+        caughtGhosts = 0;
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
         _arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField = UsernameInput.instance.InputFieldUsername;
+        usernameInputField = UsernameInput.s_instance.InputFieldUsername;
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
 
@@ -68,7 +69,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
-            EndScreen.instance.backButton.gameObject.SetActive(true);
+            EndScreen.s_instance.backButton.gameObject.SetActive(true);
         }
     }
 
@@ -80,9 +81,9 @@ public class Score : MonoBehaviour
     /// <summary>
     /// Setting the text for the UI-Element displaying the current score
     /// </summary>
-	public void SetCountText()
+	public void UpdateCountText()
     {
-        countText.text = "Punkte: " + this._score.ToString();
+        countText.text = "Punkte: " + this.score.ToString();
     }
 
     /// <summary>
@@ -90,9 +91,9 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void Increment()
     {
-        _score += 100;
-        _caughtGhosts++;
-        SetCountText();
+        score += 100;
+        caughtGhosts++;
+        UpdateCountText();
     }
 
     /// <summary>
@@ -100,11 +101,11 @@ public class Score : MonoBehaviour
     /// </summary>
 	public void Decrease()
     {
-        if (_score != 0)
+        if (score != 0)
         {
 
-            _score -= 50;
-            SetCountText();
+            score -= 50;
+            UpdateCountText();
 
         }
 
@@ -168,7 +169,7 @@ public class Score : MonoBehaviour
 
         if (!added)
         {
-            EndScreen.instance.backButton.gameObject.SetActive(true);
+            EndScreen.s_instance.backButton.gameObject.SetActive(true);
         }
     }
     /// <summary>

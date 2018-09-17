@@ -7,13 +7,14 @@ public class GhostCatcher : MonoBehaviour
     private bool _isCaught = false;
     private float _timeSinceCatched = 0;
 
-    public static string _colorOfLastCaughtGhost { get; set; }
+    // why public? why static?
+    public static string colorOfLastCaughtGhost { get; set; }
 
     private string _ghostColor;
 
     private void Start()
     {
-        _colorOfLastCaughtGhost = " ";
+        colorOfLastCaughtGhost = " ";
         _ghostColor = gameObject.name.Split('_')[0];
     }
 
@@ -52,8 +53,8 @@ public class GhostCatcher : MonoBehaviour
         {
             return;
         }
-        Score score = Score.instance;
-        if (gameObject.name.StartsWith(_colorOfLastCaughtGhost))
+        Score score = Score.s_instance;
+        if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
         {
 
             score.ShowProhibited();
@@ -63,9 +64,9 @@ public class GhostCatcher : MonoBehaviour
 
         score.Increment();
         score.SetGhostColorText(_ghostColor);
-        Countdown.instance._lastCaughtTime = Countdown.instance._elapsedTime;
+        Countdown.s_instance.lastCaughtTime = Countdown.s_instance.elapsedTime;
 
-        _colorOfLastCaughtGhost = _ghostColor;
+        colorOfLastCaughtGhost = _ghostColor;
 
         _isCaught = true;
     }

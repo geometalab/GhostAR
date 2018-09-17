@@ -6,56 +6,53 @@ using UnityEngine.UI;
 public class Countdown : MonoBehaviour
 {
 
-    public float _totalTime;
-    public float _elapsedTime { get; set; }
-    public float _lastCaughtTime;
-    public static Countdown instance;
+    public float totalTime;
+    public float elapsedTime { get; set; }
+    public float lastCaughtTime;
+    
+    public bool gameHasEnded;
+    public bool hasWaited;
 
     public Text countDownText;
 
-    public bool gameHasEnded;
-
-    public bool hasWaited;
+    public static Countdown s_instance;
 
     private void Awake()
     {
-        if (instance)
+        if (s_instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
-
-        instance = this;
+        s_instance = this;
     }
 
     private void Start()
     {
         gameHasEnded = false;
-        _totalTime = 5f;
-        _lastCaughtTime = 0;
-
+        totalTime = 5f;
+        lastCaughtTime = 0;
         hasWaited = false;
-
-        _elapsedTime = 0;
+        elapsedTime = 0;
     }
 
     private void Update()
     {
         if (!gameHasEnded)
         {
-            SetCountDownTextAndTime();
-            if (_elapsedTime >= _totalTime - 1)
+            UpdateCountDownTextAndTime();
+            if (elapsedTime >= totalTime - 1)
             {
                 gameHasEnded = true;
             }
         }
         else
         {
-            EndScreen.instance.SetEndScreenInfo();
-            if(!EndScreen.instance.hasBeenBuilt)
+            EndScreen.s_instance.SetEndScreenInfo();
+            if(!EndScreen.s_instance.hasBeenBuilt)
             {
                 countDownText.enabled = false;
-                EndScreen.instance.baseScore = Score.instance._score;
-                EndScreen.instance.ActivateEndScreen();
+                EndScreen.s_instance.baseScore = Score.s_instance.score;
+                EndScreen.s_instance.ActivateEndScreen();
             }
         }
     }
@@ -63,9 +60,9 @@ public class Countdown : MonoBehaviour
     /// <summary>
     /// Calculates the remaining time and updates the UI-Element displaying the time by flooring and parsing the float number into a String
     /// </summary>
-	public void SetCountDownTextAndTime()
+	public void UpdateCountDownTextAndTime()
     {
-        _elapsedTime += Time.deltaTime;
-        countDownText.text = Mathf.FloorToInt(_totalTime - _elapsedTime).ToString();
+        elapsedTime += Time.deltaTime;
+        countDownText.text = Mathf.FloorToInt(totalTime - elapsedTime).ToString();
     }
 }

@@ -20,7 +20,7 @@ public class ProhibitedSign : MonoBehaviour
             if (_timeShown >= 1f)
             {
                 _timeShown = 0f;
-                Score.instance.prohibitedInfo.enabled = false;
+                Score.s_instance.prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;
             }
         }

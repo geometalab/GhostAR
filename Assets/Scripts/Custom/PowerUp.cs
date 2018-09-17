@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     public int usages;
-    public static PowerUp instance;
+    public static PowerUp s_instance;
     private float _timeShown = 0f;
 
     private Text PowerUpNo;
@@ -11,17 +11,17 @@ public class PowerUp : MonoBehaviour
 
     private void Awake()
     {
-        if (instance)
+        if (s_instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
-        instance = this;
+        s_instance = this;
     }
 
     private void Start()
     {
         usages = 0;
-        PowerUpNo = Score.instance.PowerUpNotAvailable;
+        PowerUpNo = Score.s_instance.PowerUpNotAvailable;
     }
 
     private void OnClick()
@@ -92,11 +92,11 @@ public class PowerUp : MonoBehaviour
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {
             usages++;
-            GhostCatcher._colorOfLastCaughtGhost = " ";
-            Score.instance.SetGhostColorText(" ");
-            Score.instance.Decrease();
+            GhostCatcher.colorOfLastCaughtGhost = " ";
+            Score.s_instance.SetGhostColorText(" ");
+            Score.s_instance.Decrease();
             show = false;
-            EndScreen.instance.SetEndScreenInfo();
+            EndScreen.s_instance.SetEndScreenInfo();
         }
 
         if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))
