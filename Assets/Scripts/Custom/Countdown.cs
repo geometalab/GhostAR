@@ -9,19 +9,17 @@ namespace HSR.GhostAR.GameTime
         private float _totalTime;
         private float _elapsedTime;
         private float _lastCaughtTime;
-        private bool _hasWaited;
 
         public bool gameHasEnded { get; set; }
         public Text countDownText;
         public static Countdown s_instance;
 
-        public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, bool _hasWaited, Text countDownText)
+        public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, Text countDownText)
         {
             this._totalTime = _totalTime;
             this._elapsedTime = _elapsedTime;
             this._lastCaughtTime = _lastCaughtTime;
             this.gameHasEnded = gameHasEnded;
-            this._hasWaited = _hasWaited;
             this.countDownText = countDownText;
         }
 
@@ -39,7 +37,6 @@ namespace HSR.GhostAR.GameTime
             gameHasEnded = false;
             _totalTime = 5f;
             _lastCaughtTime = 0;
-            _hasWaited = false;
             _elapsedTime = 0;
         }
 
