@@ -8,19 +8,20 @@ public class EndScreen : MonoBehaviour
 
     public static EndScreen s_instance;
 
-    public UnityEngine.UI.Image endScreenBackground;
+    [SerializeField]
+    private UnityEngine.UI.Image endScreenBackground;
 
-    public Text FinalScore;
-    public Text LastCaughtTime;
+    [SerializeField]
+    private Text FinalScore;
+    [SerializeField]
+    private Text LastCaughtTime;
     public Button backButton;
 
     public int baseScore;
-    public bool hasWaited;
     public bool hasBeenBuilt;
-    public float timeWaited;
 
     private Score _score;
-
+    
     private void Awake()
     {
         if (s_instance)
@@ -35,19 +36,13 @@ public class EndScreen : MonoBehaviour
     void Start()
     {
         _score = Score.s_instance;
-
         baseScore = 0;
-        hasWaited = false;
 
         hasBeenBuilt = false;
         backButton.gameObject.SetActive(false);
-
-
         endScreenBackground.enabled = false;
         FinalScore.enabled = false;
         LastCaughtTime.enabled = false;
-
-        timeWaited = 0;
     }
 
     /// <summary>
@@ -106,7 +101,6 @@ public class EndScreen : MonoBehaviour
     /// </summary>
 	public void SetEndScreenInfo()
     {
-
         if (_score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
