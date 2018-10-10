@@ -68,17 +68,7 @@ public class EndScreen : MonoBehaviour
             int endscore = baseScore + Countdown.s_instance.GetTimeBonus();
             if (_score.score > 0)
             {
-                for (; ; )
-                {
-                    if (_score.score < endscore)
-                    {
-                        _score.score++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                _score.score = endscore;
             }
             _score.AddScoreToLeaderboard(_score.score);
         }

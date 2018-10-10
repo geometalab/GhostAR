@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace HSR.GhostAR.GameTime
@@ -75,6 +75,10 @@ namespace HSR.GhostAR.GameTime
         public int GetTimeBonus()
         {
             int timeBonus = Mathf.FloorToInt(_totalTime - _lastCaughtTime);
+            if (timeBonus > 100)
+            {
+                return 100;
+            }
             return timeBonus;
         }
 
