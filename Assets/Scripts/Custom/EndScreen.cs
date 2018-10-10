@@ -15,6 +15,8 @@ public class EndScreen : MonoBehaviour
     private Text FinalScore;
     [SerializeField]
     private Text LastCaughtTime;
+    [SerializeField]
+    private RectTransform bar;
     public Button backButton;
 
     public int baseScore;
@@ -61,6 +63,7 @@ public class EndScreen : MonoBehaviour
             _score.ghostColorText.enabled = false;
             PowerUp.s_instance.show = false;
             _score.refreshColor.gameObject.SetActive(false);
+            bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
