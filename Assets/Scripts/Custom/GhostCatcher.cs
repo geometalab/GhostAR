@@ -5,10 +5,8 @@ public class GhostCatcher : MonoBehaviour
 
     private bool _isCaught = false;
     private float _timeSinceCatched = 0;
-
     // why public? why static?
     public static string colorOfLastCaughtGhost { get; set; }
-
     private string _ghostColor;
 
     private void Start()
@@ -19,7 +17,6 @@ public class GhostCatcher : MonoBehaviour
 
     private void Update()
     {
-
         if (_isCaught)
         {
             Transform transform = gameObject.transform;
@@ -38,9 +35,7 @@ public class GhostCatcher : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
         }
-
     }
 
     private void OnMouseDown()
@@ -55,7 +50,6 @@ public class GhostCatcher : MonoBehaviour
             score.ShowProhibited();
             return;
         }
-
         score.Increment();
         score.SetGhostColorText(_ghostColor);
         HSR.GhostAR.GameTime.Countdown.s_instance.SetLastCaughtTime();

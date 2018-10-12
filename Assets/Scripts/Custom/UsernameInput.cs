@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class UsernameInput : MonoBehaviour
 {
-
     public InputField InputFieldUsername;
     public string Username;
     public static UsernameInput s_instance;

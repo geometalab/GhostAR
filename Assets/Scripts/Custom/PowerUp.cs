@@ -5,16 +5,15 @@ public class PowerUp : MonoBehaviour
     public int usages;
     public static PowerUp s_instance;
     private float _timeShown = 0f;
-
     private Text PowerUpNo;
-
-
+    
     private void Awake()
     {
         if (s_instance)
         {
             Debug.Log("Warning: Overriding instance reference");
         }
+
         s_instance = this;
     }
 
@@ -26,7 +25,6 @@ public class PowerUp : MonoBehaviour
 
     private void OnClick()
     {
-
         if (usages < 3)
         {
             show = true;
@@ -48,13 +46,11 @@ public class PowerUp : MonoBehaviour
                 if (_timeShown >= 0.75f)
                 {
                     PowerUpNo.enabled = false;
-
                     _timeShown = 0f;
                 }
             }
         }
     }
-
 
     private Rect windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
     // Only show it if needed.
@@ -92,7 +88,7 @@ public class PowerUp : MonoBehaviour
         {
             usages++;
             GhostCatcher.colorOfLastCaughtGhost = " ";
-            Score.s_instance.SetGhostColorText(" ");
+            Score.s_instance.SetGhostColorText("-");
             Score.s_instance.Decrease();
             show = false;
             EndScreen.s_instance.SetEndScreenInfo();
