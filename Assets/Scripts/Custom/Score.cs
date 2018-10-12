@@ -45,7 +45,7 @@ public class Score : MonoBehaviour
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
         _arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField = UsernameInput.s_instance.InputFieldUsername;
+        usernameInputField = GetComponent<UsernameInput>().InputFieldUsername;
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
 
