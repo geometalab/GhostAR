@@ -12,7 +12,6 @@ namespace HSR.GhostAR.GameTime
         public bool gameHasEnded { get; set; }
         [SerializeField]
         private Text countDownText;
-        public static Countdown s_instance;
 
         public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, Text countDownText)
         {
@@ -21,16 +20,6 @@ namespace HSR.GhostAR.GameTime
             this._lastCaughtTime = _lastCaughtTime;
             this.gameHasEnded = gameHasEnded;
             this.countDownText = countDownText;
-        }
-
-        private void Awake()
-        {
-            if (s_instance)
-            {
-                Debug.Log("Warning: Overriding instance reference");
-            }
-
-            s_instance = this;
         }
 
         private void Start()

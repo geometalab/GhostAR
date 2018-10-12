@@ -65,7 +65,7 @@ public class EndScreen : MonoBehaviour
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
-            int endscore = baseScore + Countdown.s_instance.GetTimeBonus();
+            int endscore = baseScore + GetComponent<Countdown>().GetTimeBonus();
 
             if (_score.score > 0)
             {
@@ -75,7 +75,7 @@ public class EndScreen : MonoBehaviour
             _score.AddScoreToLeaderboard(_score.score);
         }
         SetEndScreenPoints();
-        Countdown.s_instance.gameHasEnded = true;
+        GetComponent<Countdown>().gameHasEnded = true;
         hasBeenBuilt = true;
     }
 
@@ -96,7 +96,7 @@ public class EndScreen : MonoBehaviour
         if (_score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += " Zeit: " + (Countdown.s_instance.GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
+            LastCaughtTime.text += " Zeit: " + (GetComponent<Countdown>().GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
             LastCaughtTime.text += "Benutzte PowerUps: " + PowerUp.s_instance.usages.ToString();
         }
     }
