@@ -91,7 +91,7 @@ public class PowerUp : MonoBehaviour
             Score.s_instance.SetGhostColorText("-");
             Score.s_instance.Decrease();
             show = false;
-            EndScreen.s_instance.SetEndScreenInfo();
+            GetComponent<EndScreen>().SetEndScreenInfo();
         }
 
         if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))

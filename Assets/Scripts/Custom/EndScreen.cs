@@ -5,9 +5,6 @@ using HSR.GhostAR.GameTime;
 
 public class EndScreen : MonoBehaviour
 {
-
-    public static EndScreen s_instance;
-
     [SerializeField]
     private UnityEngine.UI.Image endScreenBackground;
     [SerializeField]
@@ -21,15 +18,6 @@ public class EndScreen : MonoBehaviour
     public int baseScore;
     public bool hasBeenBuilt;
     private Score _score;
-    
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-        s_instance = this;
-    }
 
     // Use this for initialization
     void Start()

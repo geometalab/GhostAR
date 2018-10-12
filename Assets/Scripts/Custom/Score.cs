@@ -66,7 +66,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
-            EndScreen.s_instance.backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
         }
     }
 
@@ -162,7 +162,7 @@ public class Score : MonoBehaviour
 
         if (!added)
         {
-            EndScreen.s_instance.backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
         }
     }
     /// <summary>

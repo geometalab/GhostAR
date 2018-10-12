@@ -44,13 +44,13 @@ namespace HSR.GhostAR.GameTime
             }
             else
             {
-                EndScreen.s_instance.SetEndScreenInfo();
+                GetComponent<EndScreen>().SetEndScreenInfo();
 
-                if (!EndScreen.s_instance.hasBeenBuilt)
+                if (!GetComponent<EndScreen>().hasBeenBuilt)
                 {
                     countDownText.enabled = false;
-                    EndScreen.s_instance.baseScore = Score.s_instance.score;
-                    EndScreen.s_instance.ActivateEndScreen();
+                    GetComponent<EndScreen>().baseScore = Score.s_instance.score;
+                    GetComponent<EndScreen>().ActivateEndScreen();
                 }
             }
         }
