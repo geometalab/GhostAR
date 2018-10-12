@@ -10,7 +10,6 @@ public class EndScreen : MonoBehaviour
 
     [SerializeField]
     private UnityEngine.UI.Image endScreenBackground;
-
     [SerializeField]
     private Text FinalScore;
     [SerializeField]
@@ -21,7 +20,6 @@ public class EndScreen : MonoBehaviour
 
     public int baseScore;
     public bool hasBeenBuilt;
-
     private Score _score;
     
     private void Awake()
@@ -30,7 +28,6 @@ public class EndScreen : MonoBehaviour
         {
             Debug.Log("Warning: Overriding instance reference");
         }
-
         s_instance = this;
     }
 
@@ -69,10 +66,12 @@ public class EndScreen : MonoBehaviour
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
             int endscore = baseScore + Countdown.s_instance.GetTimeBonus();
+
             if (_score.score > 0)
             {
                 _score.score = endscore;
             }
+
             _score.AddScoreToLeaderboard(_score.score);
         }
         SetEndScreenPoints();

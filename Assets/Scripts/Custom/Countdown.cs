@@ -5,7 +5,6 @@ namespace HSR.GhostAR.GameTime
 {
     public class Countdown : MonoBehaviour
     {
-
         private float _totalTime;
         private float _elapsedTime;
         private float _lastCaughtTime;
@@ -30,6 +29,7 @@ namespace HSR.GhostAR.GameTime
             {
                 Debug.Log("Warning: Overriding instance reference");
             }
+
             s_instance = this;
         }
 
@@ -46,14 +46,17 @@ namespace HSR.GhostAR.GameTime
             if (!gameHasEnded)
             {
                 UpdateCountDownTextAndTime();
+
                 if (_elapsedTime >= _totalTime - 1)
                 {
                     gameHasEnded = true;
                 }
+
             }
             else
             {
                 EndScreen.s_instance.SetEndScreenInfo();
+
                 if (!EndScreen.s_instance.hasBeenBuilt)
                 {
                     countDownText.enabled = false;
@@ -75,10 +78,12 @@ namespace HSR.GhostAR.GameTime
         public int GetTimeBonus()
         {
             int timeBonus = Mathf.FloorToInt(_totalTime - _lastCaughtTime);
+
             if (timeBonus > 100)
             {
                 return 100;
             }
+
             return timeBonus;
         }
 

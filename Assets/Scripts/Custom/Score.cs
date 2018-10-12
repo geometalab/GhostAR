@@ -5,7 +5,6 @@ using Vuforia;
 
 public class Score : MonoBehaviour
 {
-
     public static Score s_instance;
 
     public UnityEngine.UI.Image prohibitedSign;
@@ -32,7 +31,6 @@ public class Score : MonoBehaviour
         {
             Debug.Log("Warning: Overriding instance reference");
         }
-
         s_instance = this;
     }
 
@@ -59,7 +57,6 @@ public class Score : MonoBehaviour
         _leaderBoardPoints.Add("Player Five Points");
         _leaderBoardPoints.Add("Player Six Points");
         _leaderBoardPoints.Add("Player Seven Points");
-
     }
 
     private void OnSubmit()
@@ -103,12 +100,9 @@ public class Score : MonoBehaviour
     {
         if (score != 0)
         {
-
             score -= 50;
             UpdateCountText();
-
         }
-
     }
 
     /// <summary>
@@ -128,7 +122,6 @@ public class Score : MonoBehaviour
     /// <param name="score">The score the user made</param>
     public void AddScoreToLeaderboard(int score)
     {
-
         bool added = false;
         int point = 0;
         string username = "";

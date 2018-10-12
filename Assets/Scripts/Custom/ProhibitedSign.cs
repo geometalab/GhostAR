@@ -3,12 +3,10 @@ using UnityEngine.UI;
 
 public class ProhibitedSign : MonoBehaviour
 {
-
     private float _timeShown = 0f;
 
     private void Update()
     {
-
         Image prohibitedImage = gameObject.GetComponent<Image>();
 
         if (prohibitedImage.enabled)
