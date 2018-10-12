@@ -36,7 +36,7 @@ namespace HSR.GhostAR.GameTime
         private void Start()
         {
             gameHasEnded = false;
-            _totalTime = 5f;
+            _totalTime = 20f;
             _lastCaughtTime = 0;
             _elapsedTime = 0;
         }

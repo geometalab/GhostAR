@@ -92,7 +92,7 @@ public class PowerUp : MonoBehaviour
         {
             usages++;
             GhostCatcher.colorOfLastCaughtGhost = " ";
-            Score.s_instance.SetGhostColorText(" ");
+            Score.s_instance.SetGhostColorText("-");
             Score.s_instance.Decrease();
             show = false;
             EndScreen.s_instance.SetEndScreenInfo();
