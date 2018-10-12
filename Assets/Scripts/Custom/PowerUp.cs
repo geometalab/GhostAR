@@ -3,19 +3,8 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     public int usages;
-    public static PowerUp s_instance;
     private float _timeShown = 0f;
     private Text PowerUpNo;
-    
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-
-        s_instance = this;
-    }
 
     private void Start()
     {

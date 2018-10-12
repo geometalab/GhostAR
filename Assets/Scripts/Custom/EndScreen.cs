@@ -41,12 +41,11 @@ public class EndScreen : MonoBehaviour
     {
         if (!hasBeenBuilt)
         {
-            Debug.Log("End: " + PowerUp.s_instance.usages.ToString());
             VuforiaBehaviour.Instance.enabled = false;
 
             _score.countText.enabled = false;
             _score.ghostColorText.enabled = false;
-            PowerUp.s_instance.show = false;
+            GetComponent<PowerUp>().show = false;
             _score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
@@ -85,7 +84,7 @@ public class EndScreen : MonoBehaviour
         {
             LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
             LastCaughtTime.text += " Zeit: " + (GetComponent<Countdown>().GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
-            LastCaughtTime.text += "Benutzte PowerUps: " + PowerUp.s_instance.usages.ToString();
+            LastCaughtTime.text += "Benutzte PowerUps: " + GetComponent<PowerUp>().usages.ToString();
         }
     }
 }
