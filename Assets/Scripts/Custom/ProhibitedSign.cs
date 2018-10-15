@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ProhibitedSign : MonoBehaviour
@@ -16,7 +16,7 @@ public class ProhibitedSign : MonoBehaviour
             if (timeShown >= 1f)
             {
                 timeShown = 0f;
-                GetComponent<Score>().prohibitedInfo.enabled = false;
+                GameObject.Find("ARCamera").GetComponent<Score>().prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;
             }
         }

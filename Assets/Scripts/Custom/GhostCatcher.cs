@@ -5,11 +5,13 @@ public class GhostCatcher : MonoBehaviour
     private bool isCaught = false;
     private float timeSinceCatch = 0;
     public string ColorOfLastCaughtGhost { get; set; }
+    private GhostCatcher[] ghosts;
     private string ghostColor;
 
     private void Start()
     {
         ColorOfLastCaughtGhost = " ";
+        ghosts = FindObjectsOfType<GhostCatcher>();
         ghostColor = gameObject.name.Split('_')[0];
     }
 
@@ -51,7 +53,10 @@ public class GhostCatcher : MonoBehaviour
         score.Increment();
         score.SetGhostColorText(ghostColor);
         GameObject.Find("ARCamera").GetComponent<HSR.GhostAR.GameTime.Countdown>().SetLastCaughtTime();
-        ColorOfLastCaughtGhost = ghostColor;
+        foreach(GhostCatcher ghost in ghosts)
+        {
+            ghost.ColorOfLastCaughtGhost = ghostColor;
+        }
         isCaught = true;
     }
 }
