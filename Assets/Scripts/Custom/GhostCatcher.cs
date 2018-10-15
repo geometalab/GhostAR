@@ -2,7 +2,6 @@
 
 public class GhostCatcher : MonoBehaviour
 {
-
     private bool _isCaught = false;
     private float _timeSinceCatched = 0;
     // why public? why static?
