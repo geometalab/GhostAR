@@ -16,7 +16,7 @@ public class ProhibitedSign : MonoBehaviour
             if (_timeShown >= 1f)
             {
                 _timeShown = 0f;
-                Score.s_instance.prohibitedInfo.enabled = false;
+                GetComponent<Score>().prohibitedInfo.enabled = false;
                 prohibitedImage.enabled = false;
             }
         }

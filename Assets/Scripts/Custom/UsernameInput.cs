@@ -5,11 +5,9 @@ public class UsernameInput : MonoBehaviour
 {
     public InputField InputFieldUsername;
     public string Username;
-    public static UsernameInput s_instance;
 
     private void Awake()
     {
-        s_instance = this;
         InputFieldUsername.gameObject.SetActive(false);
     }
 

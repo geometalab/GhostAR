@@ -12,7 +12,6 @@ namespace HSR.GhostAR.GameTime
         public bool gameHasEnded { get; set; }
         [SerializeField]
         private Text countDownText;
-        public static Countdown s_instance;
 
         public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, Text countDownText)
         {
@@ -21,16 +20,6 @@ namespace HSR.GhostAR.GameTime
             this._lastCaughtTime = _lastCaughtTime;
             this.gameHasEnded = gameHasEnded;
             this.countDownText = countDownText;
-        }
-
-        private void Awake()
-        {
-            if (s_instance)
-            {
-                Debug.Log("Warning: Overriding instance reference");
-            }
-
-            s_instance = this;
         }
 
         private void Start()
@@ -55,13 +44,13 @@ namespace HSR.GhostAR.GameTime
             }
             else
             {
-                EndScreen.s_instance.SetEndScreenInfo();
+                GetComponent<EndScreen>().SetEndScreenInfo();
 
-                if (!EndScreen.s_instance.hasBeenBuilt)
+                if (!GetComponent<EndScreen>().hasBeenBuilt)
                 {
                     countDownText.enabled = false;
-                    EndScreen.s_instance.baseScore = Score.s_instance.score;
-                    EndScreen.s_instance.ActivateEndScreen();
+                    GetComponent<EndScreen>().baseScore = GetComponent<Score>().score;
+                    GetComponent<EndScreen>().ActivateEndScreen();
                 }
             }
         }

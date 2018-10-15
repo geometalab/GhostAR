@@ -2,7 +2,6 @@
 
 public class GhostCatcher : MonoBehaviour
 {
-
     private bool _isCaught = false;
     private float _timeSinceCatched = 0;
     // why public? why static?
@@ -44,7 +43,7 @@ public class GhostCatcher : MonoBehaviour
         {
             return;
         }
-        Score score = Score.s_instance;
+        Score score = GameObject.Find("ARCamera").GetComponent<Score>();
         if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
         {
             score.ShowProhibited();
@@ -52,7 +51,7 @@ public class GhostCatcher : MonoBehaviour
         }
         score.Increment();
         score.SetGhostColorText(_ghostColor);
-        HSR.GhostAR.GameTime.Countdown.s_instance.SetLastCaughtTime();
+        GameObject.Find("ARCamera").GetComponent<HSR.GhostAR.GameTime.Countdown>().SetLastCaughtTime();
         colorOfLastCaughtGhost = _ghostColor;
         _isCaught = true;
     }

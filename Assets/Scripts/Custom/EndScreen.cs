@@ -5,9 +5,6 @@ using HSR.GhostAR.GameTime;
 
 public class EndScreen : MonoBehaviour
 {
-
-    public static EndScreen s_instance;
-
     [SerializeField]
     private UnityEngine.UI.Image endScreenBackground;
     [SerializeField]
@@ -21,20 +18,11 @@ public class EndScreen : MonoBehaviour
     public int baseScore;
     public bool hasBeenBuilt;
     private Score _score;
-    
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-        s_instance = this;
-    }
 
     // Use this for initialization
     void Start()
     {
-        _score = Score.s_instance;
+        _score = GetComponent<Score>();
         baseScore = 0;
 
         hasBeenBuilt = false;
@@ -53,19 +41,18 @@ public class EndScreen : MonoBehaviour
     {
         if (!hasBeenBuilt)
         {
-            Debug.Log("End: " + PowerUp.s_instance.usages.ToString());
             VuforiaBehaviour.Instance.enabled = false;
 
             _score.countText.enabled = false;
             _score.ghostColorText.enabled = false;
-            PowerUp.s_instance.show = false;
+            GetComponent<PowerUp>().show = false;
             _score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
-            int endscore = baseScore + Countdown.s_instance.GetTimeBonus();
+            int endscore = baseScore + GetComponent<Countdown>().GetTimeBonus();
 
             if (_score.score > 0)
             {
@@ -75,7 +62,7 @@ public class EndScreen : MonoBehaviour
             _score.AddScoreToLeaderboard(_score.score);
         }
         SetEndScreenPoints();
-        Countdown.s_instance.gameHasEnded = true;
+        GetComponent<Countdown>().gameHasEnded = true;
         hasBeenBuilt = true;
     }
 
@@ -96,8 +83,8 @@ public class EndScreen : MonoBehaviour
         if (_score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += " Zeit: " + (Countdown.s_instance.GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
-            LastCaughtTime.text += "Benutzte PowerUps: " + PowerUp.s_instance.usages.ToString();
+            LastCaughtTime.text += " Zeit: " + (GetComponent<Countdown>().GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
+            LastCaughtTime.text += "Benutzte PowerUps: " + GetComponent<PowerUp>().usages.ToString();
         }
     }
 }

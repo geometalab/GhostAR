@@ -5,8 +5,6 @@ using Vuforia;
 
 public class Score : MonoBehaviour
 {
-    public static Score s_instance;
-
     public UnityEngine.UI.Image prohibitedSign;
 
     public Text countText;
@@ -25,15 +23,6 @@ public class Score : MonoBehaviour
     private string _arrayListValueOfHighscore;
     private InputField usernameInputField;
 
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-        s_instance = this;
-    }
-
     private void Start()
     {
         VuforiaBehaviour.Instance.enabled = true;
@@ -45,7 +34,7 @@ public class Score : MonoBehaviour
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
         _arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField = UsernameInput.s_instance.InputFieldUsername;
+        usernameInputField = GetComponent<UsernameInput>().InputFieldUsername;
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
 
@@ -66,7 +55,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
-            EndScreen.s_instance.backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
         }
     }
 
@@ -162,7 +151,7 @@ public class Score : MonoBehaviour
 
         if (!added)
         {
-            EndScreen.s_instance.backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
         }
     }
     /// <summary>
