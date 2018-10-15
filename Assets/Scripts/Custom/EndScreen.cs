@@ -13,18 +13,23 @@ public class EndScreen : MonoBehaviour
     private Text LastCaughtTime;
     [SerializeField]
     private RectTransform bar;
-    public Button backButton;
+    [SerializeField]
+    private Button backButton;
 
     public int baseScore;
     public bool hasBeenBuilt;
-    private Score _score;
+    private Score score;
+    Countdown countdown;
+    PowerUp powerUp;
 
     // Use this for initialization
     void Start()
     {
-        _score = GetComponent<Score>();
-        baseScore = 0;
+        score = GetComponent<Score>();
+        countdown = GetComponent<Countdown>();
+        powerUp = GetComponent<PowerUp>();
 
+        baseScore = 0;
         hasBeenBuilt = false;
         backButton.gameObject.SetActive(false);
         endScreenBackground.enabled = false;
@@ -43,26 +48,26 @@ public class EndScreen : MonoBehaviour
         {
             VuforiaBehaviour.Instance.enabled = false;
 
-            _score.countText.enabled = false;
-            _score.ghostColorText.enabled = false;
-            GetComponent<PowerUp>().show = false;
-            _score.refreshColor.gameObject.SetActive(false);
+            score.countText.enabled = false;
+            score.ghostColorText.enabled = false;
+            powerUp.show = false;
+            score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
-            int endscore = baseScore + GetComponent<Countdown>().GetTimeBonus();
+            int endscore = baseScore + countdown.GetTimeBonus();
 
-            if (_score.score > 0)
+            if (score.score > 0)
             {
-                _score.score = endscore;
+                score.score = endscore;
             }
 
-            _score.AddScoreToLeaderboard(_score.score);
+            score.AddScoreToLeaderboard(score.score);
         }
         SetEndScreenPoints();
-        GetComponent<Countdown>().GameHasEnded = true;
+        countdown.GameHasEnded = true;
         hasBeenBuilt = true;
     }
 
@@ -72,7 +77,7 @@ public class EndScreen : MonoBehaviour
     /// </summary>
     public void SetEndScreenPoints()
     {
-        FinalScore.text = "Punkte: " + _score.score;
+        FinalScore.text = "Punkte: " + score.score;
     }
 
     /// <summary>
@@ -80,11 +85,16 @@ public class EndScreen : MonoBehaviour
     /// </summary>
 	public void SetEndScreenInfo()
     {
-        if (_score.caughtGhosts != 0)
+        if (score.caughtGhosts != 0)
         {
-            LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += " Zeit: " + (GetComponent<Countdown>().GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
-            LastCaughtTime.text += "Benutzte PowerUps: " + GetComponent<PowerUp>().usages.ToString();
+            LastCaughtTime.text = "Geister: " + score.caughtGhosts.ToString() + "\n";
+            LastCaughtTime.text += " Zeit: " + (countdown.GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
+            LastCaughtTime.text += "Benutzte PowerUps: " + powerUp.usages.ToString();
         }
+    }
+
+    public void SetBackButtonActive()
+    {
+        backButton.gameObject.SetActive(true);
     }
 }
