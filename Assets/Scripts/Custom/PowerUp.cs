@@ -5,11 +5,13 @@ public class PowerUp : MonoBehaviour
     public int usages;
     private float _timeShown = 0f;
     private Text PowerUpNo;
+    private GhostCatcher[] ghostCatchers;
 
     private void Start()
     {
         usages = 0;
         PowerUpNo = GetComponent<Score>().PowerUpNotAvailable;
+        ghostCatchers = FindObjectsOfType<GhostCatcher>();
     }
 
     private void OnClick()
@@ -76,7 +78,10 @@ public class PowerUp : MonoBehaviour
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {
             usages++;
-            GhostCatcher.colorOfLastCaughtGhost = " ";
+            foreach(GhostCatcher ghost in ghostCatchers)
+            {
+                ghost.ColorOfLastCaughtGhost = " ";
+            }
             GetComponent<Score>().SetGhostColorText("-");
             GetComponent<Score>().Decrease();
             show = false;
