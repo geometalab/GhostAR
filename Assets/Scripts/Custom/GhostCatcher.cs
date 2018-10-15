@@ -50,7 +50,7 @@ public class GhostCatcher : MonoBehaviour
             score.ShowProhibited();
             return;
         }
-        score.Increment();
+        score.IncrementScore(100);
         score.SetGhostColorText(ghostColor);
         GameObject.Find("ARCamera").GetComponent<HSR.GhostAR.GameTime.Countdown>().SetLastCaughtTime();
         foreach(GhostCatcher ghost in ghosts)

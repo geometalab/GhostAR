@@ -85,7 +85,7 @@ public class PowerUp : MonoBehaviour
                 ghost.ColorOfLastCaughtGhost = " ";
             }
             GetComponent<Score>().SetGhostColorText("-");
-            GetComponent<Score>().Decrease();
+            GetComponent<Score>().DecreaseScore(50);
             show = false;
             GetComponent<EndScreen>().SetEndScreenInfo();
         }
