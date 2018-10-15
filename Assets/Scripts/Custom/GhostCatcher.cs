@@ -2,33 +2,34 @@
 
 public class GhostCatcher : MonoBehaviour
 {
-    private bool _isCaught = false;
-    private float _timeSinceCatched = 0;
-    // why public? why static?
-    public static string colorOfLastCaughtGhost { get; set; }
-    private string _ghostColor;
+    private bool isCaught = false;
+    private float timeSinceCatch = 0;
+    public string ColorOfLastCaughtGhost { get; set; }
+    private GhostCatcher[] ghosts;
+    private string ghostColor;
 
     private void Start()
     {
-        colorOfLastCaughtGhost = " ";
-        _ghostColor = gameObject.name.Split('_')[0];
+        ColorOfLastCaughtGhost = " ";
+        ghosts = FindObjectsOfType<GhostCatcher>();
+        ghostColor = gameObject.name.Split('_')[0];
     }
 
     private void Update()
     {
-        if (_isCaught)
+        if (isCaught)
         {
             Transform transform = gameObject.transform;
 
-            transform.Rotate(Vector3.forward * _timeSinceCatched * 10f);
+            transform.Rotate(Vector3.forward * timeSinceCatch * 10f);
 
             Vector3 cameraPosition = Camera.main.transform.position;
             Vector3 targetDestination = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z - 0.5f);
 
-            transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.05f * _timeSinceCatched);
-            transform.localScale *= 1f - Time.deltaTime * _timeSinceCatched * 1.5f;
+            transform.position = Vector3.MoveTowards(transform.position, targetDestination, 0.05f * timeSinceCatch);
+            transform.localScale *= 1f - Time.deltaTime * timeSinceCatch * 1.5f;
 
-            _timeSinceCatched += Time.deltaTime;
+            timeSinceCatch += Time.deltaTime;
 
             if (transform.position == targetDestination)
             {
@@ -39,20 +40,23 @@ public class GhostCatcher : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_isCaught)
+        if (isCaught)
         {
             return;
         }
         Score score = GameObject.Find("ARCamera").GetComponent<Score>();
-        if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
+        if (gameObject.name.StartsWith(ColorOfLastCaughtGhost))
         {
             score.ShowProhibited();
             return;
         }
-        score.Increment();
-        score.SetGhostColorText(_ghostColor);
+        score.IncrementScore(100);
+        score.SetGhostColorText(ghostColor);
         GameObject.Find("ARCamera").GetComponent<HSR.GhostAR.GameTime.Countdown>().SetLastCaughtTime();
-        colorOfLastCaughtGhost = _ghostColor;
-        _isCaught = true;
+        foreach(GhostCatcher ghost in ghosts)
+        {
+            ghost.ColorOfLastCaughtGhost = ghostColor;
+        }
+        isCaught = true;
     }
 }

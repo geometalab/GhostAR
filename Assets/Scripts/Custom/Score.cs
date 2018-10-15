@@ -5,7 +5,8 @@ using Vuforia;
 
 public class Score : MonoBehaviour
 {
-    public UnityEngine.UI.Image prohibitedSign;
+    [SerializeField]
+    private UnityEngine.UI.Image prohibitedSign;
 
     public Text countText;
     public Text ghostColorText;
@@ -13,14 +14,18 @@ public class Score : MonoBehaviour
     public Text prohibitedInfo;
     public Text PowerUpNotAvailable;
 
-    public Button submitUsernameButton;
+    [SerializeField]
+    private Button submitUsernameButton;
     public Button refreshColor;
 
+    [HideInInspector]
     public int score;
+    [HideInInspector]
     public int caughtGhosts;
 
-    private ArrayList _leaderBoardPoints;
-    private string _arrayListValueOfHighscore;
+    private ArrayList leaderBoardPoints;
+    private string arrayListValueOfHighscore;
+    [SerializeField]
     private InputField usernameInputField;
 
     private void Start()
@@ -33,70 +38,60 @@ public class Score : MonoBehaviour
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
-        _arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField = GetComponent<UsernameInput>().InputFieldUsername;
+        arrayListValueOfHighscore = "Player Unknown";
+        usernameInputField.gameObject.SetActive(false);
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
 
-        _leaderBoardPoints = new ArrayList();
-        _leaderBoardPoints.Add("Player One Points");
-        _leaderBoardPoints.Add("Player Two Points");
-        _leaderBoardPoints.Add("Player Three Points");
-        _leaderBoardPoints.Add("Player Four Points");
-        _leaderBoardPoints.Add("Player Five Points");
-        _leaderBoardPoints.Add("Player Six Points");
-        _leaderBoardPoints.Add("Player Seven Points");
+        leaderBoardPoints = new ArrayList
+        {
+            "Player One Points",
+            "Player Two Points",
+            "Player Three Points",
+            "Player Four Points",
+            "Player Five Points",
+            "Player Six Points",
+            "Player Seven Points"
+        };
     }
 
     private void OnSubmit()
     {
         if (usernameInputField.text != "")
         {
-            PlayerPrefs.SetString(_arrayListValueOfHighscore, usernameInputField.text);
+            PlayerPrefs.SetString(arrayListValueOfHighscore, usernameInputField.text);
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
-            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().SetBackButtonActive();
         }
     }
 
-    public void enablePowerup(bool yesnt)
+    public void EnablePowerup(bool yesnt)
     {
         PowerUpNotAvailable.enabled = yesnt;
     }
-
-    /// <summary>
-    /// Setting the text for the UI-Element displaying the current score
-    /// </summary>
+    
 	public void UpdateCountText()
     {
         countText.text = "Punkte: " + this.score.ToString();
     }
-
-    /// <summary>
-    /// Adding 100 points to the _score variable and updating the UI-Element displaying the current score
-    /// </summary>
-	public void Increment()
+    
+	public void IncrementScore(int points)
     {
-        score += 100;
+        score += points;
         caughtGhosts++;
         UpdateCountText();
     }
-
-    /// <summary>
-    /// Decreasing the number of points by 50 and updating the UI-Element displaying the current score
-    /// </summary>
-	public void Decrease()
+    
+	public void DecreaseScore(int points)
     {
         if (score != 0)
         {
-            score -= 50;
+            score -= points;
             UpdateCountText();
         }
     }
-
-    /// <summary>
-    /// Setting the text for the UI-Element displaying the color of the last caught ghost
-    /// </summary>
+    
     /// <param name="ghostColor">color to display in the UI-Element</param>
 	public void SetGhostColorText(string ghostColor)
     {
@@ -115,7 +110,7 @@ public class Score : MonoBehaviour
         int point = 0;
         string username = "";
 
-        foreach (string lbPoint in _leaderBoardPoints)
+        foreach (string lbPoint in leaderBoardPoints)
         {
             string[] playerName = lbPoint.Split(' ');
 
@@ -139,7 +134,7 @@ public class Score : MonoBehaviour
             {
                 PlayerPrefs.SetInt(lbPoint, score);
 
-                _arrayListValueOfHighscore = playerName[0] + " " + playerName[1];
+                arrayListValueOfHighscore = playerName[0] + " " + playerName[1];
                 username = PlayerPrefs.GetString(playerName[0] + " " + playerName[1]);
 
                 added = true;
@@ -151,12 +146,10 @@ public class Score : MonoBehaviour
 
         if (!added)
         {
-            GetComponent<EndScreen>().backButton.gameObject.SetActive(true);
+            GetComponent<EndScreen>().SetBackButtonActive();
         }
     }
-    /// <summary>
-    /// Enables the image ProhibitedSign and the message beneath it
-    /// </summary>
+
 	public void ShowProhibited()
     {
         prohibitedSign.enabled = true;
