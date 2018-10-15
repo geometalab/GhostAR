@@ -857,7 +857,6 @@ GameObject:
   - component: {fileID: 794640948}
   - component: {fileID: 794640947}
   - component: {fileID: 794640946}
-  - component: {fileID: 794640952}
   - component: {fileID: 794640951}
   - component: {fileID: 794640953}
   - component: {fileID: 794640955}
@@ -971,17 +970,6 @@ MonoBehaviour:
   score: 0
   caughtGhosts: 0
   usernameInputField: {fileID: 1839119466}
---- !u!114 &794640952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794640945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d7d3f32d3911c4591362ef0dfff802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &794640953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,7 +2068,6 @@ GameObject:
   - component: {fileID: 1839119468}
   - component: {fileID: 1839119467}
   - component: {fileID: 1839119466}
-  - component: {fileID: 1839119469}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -2162,7 +2149,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1839119469}
+      - m_Target: {fileID: 0}
         m_MethodName: GetuserInput
         m_Mode: 0
         m_Arguments:
@@ -2215,19 +2202,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1839119464}
---- !u!114 &1839119469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839119464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c3d521ee7c35746b7ec707037ecc96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputFieldUsername: {fileID: 0}
-  Username: 
 --- !u!1 &1895222351
 GameObject:
   m_ObjectHideFlags: 0

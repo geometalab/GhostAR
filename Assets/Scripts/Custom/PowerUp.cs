@@ -2,7 +2,9 @@
 using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
+    [HideInInspector]
     public int usages;
+    [HideInInspector]
     public bool show;
 
     private float timeShown;

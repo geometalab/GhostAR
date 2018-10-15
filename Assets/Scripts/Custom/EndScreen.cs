@@ -16,7 +16,9 @@ public class EndScreen : MonoBehaviour
     [SerializeField]
     private Button backButton;
 
+    [HideInInspector]
     public int baseScore;
+    [HideInInspector]
     public bool hasBeenBuilt;
     private Score score;
     Countdown countdown;
