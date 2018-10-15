@@ -18,11 +18,14 @@ public class Score : MonoBehaviour
     private Button submitUsernameButton;
     public Button refreshColor;
 
+    [HideInInspector]
     public int score;
+    [HideInInspector]
     public int caughtGhosts;
 
     private ArrayList leaderBoardPoints;
     private string arrayListValueOfHighscore;
+    [SerializeField]
     private InputField usernameInputField;
 
     private void Start()
@@ -36,7 +39,7 @@ public class Score : MonoBehaviour
         prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
         arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField = GetComponent<UsernameInput>().InputFieldUsername;
+        usernameInputField.gameObject.SetActive(false);
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
 
