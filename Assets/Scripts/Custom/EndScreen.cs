@@ -22,7 +22,7 @@ public class EndScreen : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _score = Score.s_instance;
+        _score = GetComponent<Score>();
         baseScore = 0;
 
         hasBeenBuilt = false;

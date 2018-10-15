@@ -9,7 +9,7 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         usages = 0;
-        PowerUpNo = Score.s_instance.PowerUpNotAvailable;
+        PowerUpNo = GetComponent<Score>().PowerUpNotAvailable;
     }
 
     private void OnClick()
@@ -77,8 +77,8 @@ public class PowerUp : MonoBehaviour
         {
             usages++;
             GhostCatcher.colorOfLastCaughtGhost = " ";
-            Score.s_instance.SetGhostColorText("-");
-            Score.s_instance.Decrease();
+            GetComponent<Score>().SetGhostColorText("-");
+            GetComponent<Score>().Decrease();
             show = false;
             GetComponent<EndScreen>().SetEndScreenInfo();
         }

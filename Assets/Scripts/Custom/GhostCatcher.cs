@@ -44,7 +44,7 @@ public class GhostCatcher : MonoBehaviour
         {
             return;
         }
-        Score score = Score.s_instance;
+        Score score = GameObject.Find("ARCamera").GetComponent<Score>();
         if (gameObject.name.StartsWith(colorOfLastCaughtGhost))
         {
             score.ShowProhibited();
