@@ -62,7 +62,7 @@ public class EndScreen : MonoBehaviour
             _score.AddScoreToLeaderboard(_score.score);
         }
         SetEndScreenPoints();
-        GetComponent<Countdown>().gameHasEnded = true;
+        GetComponent<Countdown>().GameHasEnded = true;
         hasBeenBuilt = true;
     }
 
