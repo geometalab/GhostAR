@@ -67,11 +67,6 @@ namespace HSR.GhostAR.GameTime
             return timeBonus;
         }
 
-        public float GetCentisecondOfLastCaughtGhost()
-        {
-            return Mathf.Ceil(lastCaughtTime * 100);
-        }
-
         public void SetLastCaughtTime()
         {
             lastCaughtTime = elapsedTime;

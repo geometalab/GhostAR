@@ -90,7 +90,6 @@ public class EndScreen : MonoBehaviour
         if (score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += " Zeit: " + (countdown.GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
             LastCaughtTime.text += "Benutzte PowerUps: " + powerUp.usages.ToString();
         }
     }
