@@ -84,7 +84,7 @@ public class PowerUp : MonoBehaviour
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {
             usages++;
-            foreach(GhostCatcher ghost in ghostCatchers)
+            foreach (GhostCatcher ghost in ghostCatchers)
             {
                 ghost.ColorOfLastCaughtGhost = " ";
             }
@@ -92,7 +92,14 @@ public class PowerUp : MonoBehaviour
             GetComponent<Score>().DecreaseScore(50);
             show = false;
             GetComponent<EndScreen>().SetEndScreenInfo();
-            ghost.CatchGhost();
+            if (ghost)
+            {
+                ghost.CatchGhost();
+            }
+            else
+            {
+                Debug.LogError("Couldn't find the ghost to catch");
+            }
         }
 
         if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))
