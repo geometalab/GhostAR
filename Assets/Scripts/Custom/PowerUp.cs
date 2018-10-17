@@ -8,6 +8,7 @@ public class PowerUp : MonoBehaviour
     public bool show;
 
     private float timeShown;
+    private GhostCatcher ghost;
     private Text PowerUpNo;
     private GhostCatcher[] ghostCatchers;
     private Rect windowRect;
@@ -25,11 +26,12 @@ public class PowerUp : MonoBehaviour
         windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
     }
 
-    private void OnClick()
+    public void OnClick(GhostCatcher ghost)
     {
         if (usages < 3)
         {
             show = true;
+            this.ghost = ghost;
         }
         else
         {
@@ -90,6 +92,7 @@ public class PowerUp : MonoBehaviour
             GetComponent<Score>().DecreaseScore(50);
             show = false;
             GetComponent<EndScreen>().SetEndScreenInfo();
+            ghost.CatchGhost();
         }
 
         if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))

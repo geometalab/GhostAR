@@ -47,7 +47,7 @@ public class GhostCatcher : MonoBehaviour
         Score score = GameObject.Find("ARCamera").GetComponent<Score>();
         if (gameObject.name.StartsWith(ColorOfLastCaughtGhost))
         {
-            score.ShowProhibited();
+            GameObject.Find("ARCamera").GetComponent<PowerUp>().OnClick(this);
             return;
         }
         score.IncrementScore(100);
@@ -58,5 +58,10 @@ public class GhostCatcher : MonoBehaviour
             ghost.ColorOfLastCaughtGhost = ghostColor;
         }
         isCaught = true;
+    }
+
+    public void CatchGhost()
+    {
+        OnMouseDown();
     }
 }
