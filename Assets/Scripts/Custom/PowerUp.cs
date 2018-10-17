@@ -3,10 +3,9 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     [HideInInspector]
-    public int usages;
-    [HideInInspector]
     public bool show;
 
+    private int usages;
     private float timeShown;
     private GhostCatcher ghost;
     private Text PowerUpNo;
@@ -106,5 +105,10 @@ public class PowerUp : MonoBehaviour
         {
             show = false;
         }
+    }
+
+    public string GetUsagesAsString()
+    {
+        return usages.ToString();
     }
 }
