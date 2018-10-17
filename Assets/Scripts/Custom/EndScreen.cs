@@ -53,7 +53,6 @@ public class EndScreen : MonoBehaviour
             score.countText.enabled = false;
             score.ghostColorText.enabled = false;
             powerUp.show = false;
-            score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
