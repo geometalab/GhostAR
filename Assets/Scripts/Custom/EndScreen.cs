@@ -5,41 +5,33 @@ using HSR.GhostAR.GameTime;
 
 public class EndScreen : MonoBehaviour
 {
-
-    public static EndScreen s_instance;
-
     [SerializeField]
     private UnityEngine.UI.Image endScreenBackground;
-
     [SerializeField]
     private Text FinalScore;
     [SerializeField]
     private Text LastCaughtTime;
     [SerializeField]
     private RectTransform bar;
-    public Button backButton;
+    [SerializeField]
+    private Button backButton;
 
+    [HideInInspector]
     public int baseScore;
+    [HideInInspector]
     public bool hasBeenBuilt;
-
-    private Score _score;
-    
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-
-        s_instance = this;
-    }
+    private Score score;
+    Countdown countdown;
+    PowerUp powerUp;
 
     // Use this for initialization
     void Start()
     {
-        _score = Score.s_instance;
-        baseScore = 0;
+        score = GetComponent<Score>();
+        countdown = GetComponent<Countdown>();
+        powerUp = GetComponent<PowerUp>();
 
+        baseScore = 0;
         hasBeenBuilt = false;
         backButton.gameObject.SetActive(false);
         endScreenBackground.enabled = false;
@@ -56,27 +48,28 @@ public class EndScreen : MonoBehaviour
     {
         if (!hasBeenBuilt)
         {
-            Debug.Log("End: " + PowerUp.s_instance.usages.ToString());
             VuforiaBehaviour.Instance.enabled = false;
 
-            _score.countText.enabled = false;
-            _score.ghostColorText.enabled = false;
-            PowerUp.s_instance.show = false;
-            _score.refreshColor.gameObject.SetActive(false);
+            score.countText.enabled = false;
+            score.ghostColorText.enabled = false;
+            powerUp.show = false;
+            score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
             FinalScore.enabled = true;
             LastCaughtTime.enabled = true;
-            int endscore = baseScore + Countdown.s_instance.GetTimeBonus();
-            if (_score.score > 0)
+            int endscore = baseScore + countdown.GetTimeBonus();
+
+            if (score.score > 0)
             {
-                _score.score = endscore;
+                score.score = endscore;
             }
-            _score.AddScoreToLeaderboard(_score.score);
+
+            score.AddScoreToLeaderboard(score.score);
         }
         SetEndScreenPoints();
-        Countdown.s_instance.gameHasEnded = true;
+        countdown.GameHasEnded = true;
         hasBeenBuilt = true;
     }
 
@@ -86,7 +79,7 @@ public class EndScreen : MonoBehaviour
     /// </summary>
     public void SetEndScreenPoints()
     {
-        FinalScore.text = "Punkte: " + _score.score;
+        FinalScore.text = "Punkte: " + score.score;
     }
 
     /// <summary>
@@ -94,11 +87,15 @@ public class EndScreen : MonoBehaviour
     /// </summary>
 	public void SetEndScreenInfo()
     {
-        if (_score.caughtGhosts != 0)
+        if (score.caughtGhosts != 0)
         {
-            LastCaughtTime.text = "Geister: " + _score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += " Zeit: " + (Countdown.s_instance.GetCentisecondOfLastCaughtGhost() * 0.01).ToString() + " Sekunden \n";
-            LastCaughtTime.text += "Benutzte PowerUps: " + PowerUp.s_instance.usages.ToString();
+            LastCaughtTime.text = "Geister: " + score.caughtGhosts.ToString() + "\n";
+            LastCaughtTime.text += "Benutzte PowerUps: " + powerUp.usages.ToString();
         }
+    }
+
+    public void SetBackButtonActive()
+    {
+        backButton.gameObject.SetActive(true);
     }
 }

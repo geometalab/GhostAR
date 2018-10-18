@@ -5,60 +5,43 @@ namespace HSR.GhostAR.GameTime
 {
     public class Countdown : MonoBehaviour
     {
-
-        private float _totalTime;
-        private float _elapsedTime;
-        private float _lastCaughtTime;
-
-        public bool gameHasEnded { get; set; }
         [SerializeField]
         private Text countDownText;
-        public static Countdown s_instance;
+        private float totalTime;
+        private float elapsedTime;
+        private float lastCaughtTime;
 
-        public Countdown(float _totalTime, float _elapsedTime, float _lastCaughtTime, bool gameHasEnded, Text countDownText)
-        {
-            this._totalTime = _totalTime;
-            this._elapsedTime = _elapsedTime;
-            this._lastCaughtTime = _lastCaughtTime;
-            this.gameHasEnded = gameHasEnded;
-            this.countDownText = countDownText;
-        }
-
-        private void Awake()
-        {
-            if (s_instance)
-            {
-                Debug.Log("Warning: Overriding instance reference");
-            }
-            s_instance = this;
-        }
+        public bool GameHasEnded { get; set; }
 
         private void Start()
         {
-            gameHasEnded = false;
-            _totalTime = 5f;
-            _lastCaughtTime = 0;
-            _elapsedTime = 0;
+            GameHasEnded = false;
+            totalTime = 20f;
+            lastCaughtTime = 0;
+            elapsedTime = 0;
         }
 
         private void Update()
         {
-            if (!gameHasEnded)
+            if (!GameHasEnded)
             {
                 UpdateCountDownTextAndTime();
-                if (_elapsedTime >= _totalTime - 1)
+
+                if (elapsedTime >= totalTime - 1)
                 {
-                    gameHasEnded = true;
+                    GameHasEnded = true;
                 }
             }
             else
             {
-                EndScreen.s_instance.SetEndScreenInfo();
-                if (!EndScreen.s_instance.hasBeenBuilt)
+                EndScreen endScreen = GetComponent<EndScreen>();
+                endScreen.SetEndScreenInfo();
+
+                if (!GetComponent<EndScreen>().hasBeenBuilt)
                 {
                     countDownText.enabled = false;
-                    EndScreen.s_instance.baseScore = Score.s_instance.score;
-                    EndScreen.s_instance.ActivateEndScreen();
+                    endScreen.baseScore = GetComponent<Score>().score;
+                    endScreen.ActivateEndScreen();
                 }
             }
         }
@@ -68,28 +51,25 @@ namespace HSR.GhostAR.GameTime
         /// </summary>
         public void UpdateCountDownTextAndTime()
         {
-            _elapsedTime += Time.deltaTime;
-            countDownText.text = Mathf.FloorToInt(_totalTime - _elapsedTime).ToString();
+            elapsedTime += Time.deltaTime;
+            countDownText.text = Mathf.FloorToInt(totalTime - elapsedTime).ToString();
         }
 
         public int GetTimeBonus()
         {
-            int timeBonus = Mathf.FloorToInt(_totalTime - _lastCaughtTime);
+            int timeBonus = Mathf.FloorToInt(totalTime - lastCaughtTime);
+
             if (timeBonus > 100)
             {
                 return 100;
             }
-            return timeBonus;
-        }
 
-        public float GetCentisecondOfLastCaughtGhost()
-        {
-            return Mathf.Ceil(_lastCaughtTime * 100);
+            return timeBonus;
         }
 
         public void SetLastCaughtTime()
         {
-            _lastCaughtTime = _elapsedTime;
+            lastCaughtTime = elapsedTime;
         }
     }
 }

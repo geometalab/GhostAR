@@ -2,31 +2,31 @@
 using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
+    [HideInInspector]
     public int usages;
-    public static PowerUp s_instance;
-    private float _timeShown = 0f;
+    [HideInInspector]
+    public bool show;
 
+    private float timeShown;
     private Text PowerUpNo;
-
-
-    private void Awake()
-    {
-        if (s_instance)
-        {
-            Debug.Log("Warning: Overriding instance reference");
-        }
-        s_instance = this;
-    }
+    private GhostCatcher[] ghostCatchers;
+    private Rect windowRect;
+    private GUIStyle headerStyle;
+    private GUIStyle labelStyle;
+    private GUIStyle btnStyle;
 
     private void Start()
     {
         usages = 0;
-        PowerUpNo = Score.s_instance.PowerUpNotAvailable;
+        timeShown = 0f;
+        show = false;
+        PowerUpNo = GetComponent<Score>().PowerUpNotAvailable;
+        ghostCatchers = FindObjectsOfType<GhostCatcher>();
+        windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
     }
 
     private void OnClick()
     {
-
         if (usages < 3)
         {
             show = true;
@@ -43,25 +43,16 @@ public class PowerUp : MonoBehaviour
         {
             if (PowerUpNo.enabled)
             {
-                _timeShown += Time.deltaTime;
+                timeShown += Time.deltaTime;
 
-                if (_timeShown >= 0.75f)
+                if (timeShown >= 0.75f)
                 {
                     PowerUpNo.enabled = false;
-
-                    _timeShown = 0f;
+                    timeShown = 0f;
                 }
             }
         }
     }
-
-
-    private Rect windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
-    // Only show it if needed.
-    public bool show = false;
-    public GUIStyle headerStyle;
-    public GUIStyle labelStyle;
-    public GUIStyle btnStyle;
 
     private void OnGUI()
     {
@@ -91,11 +82,14 @@ public class PowerUp : MonoBehaviour
         if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
         {
             usages++;
-            GhostCatcher.colorOfLastCaughtGhost = " ";
-            Score.s_instance.SetGhostColorText(" ");
-            Score.s_instance.Decrease();
+            foreach(GhostCatcher ghost in ghostCatchers)
+            {
+                ghost.ColorOfLastCaughtGhost = " ";
+            }
+            GetComponent<Score>().SetGhostColorText("-");
+            GetComponent<Score>().DecreaseScore(50);
             show = false;
-            EndScreen.s_instance.SetEndScreenInfo();
+            GetComponent<EndScreen>().SetEndScreenInfo();
         }
 
         if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))
