@@ -24,9 +24,9 @@ public class PowerUp : MonoBehaviour
         PowerUpNo = GetComponent<Score>().PowerUpNotAvailable;
         ghostCatchers = FindObjectsOfType<GhostCatcher>();
         windowRect = new Rect(
-            (Screen.width - (Screen.width / 10 * 8)) / 2, 
-            (Screen.height - (Screen.height / 10 * 6)) / 2, 
-            (Screen.width / 10 * 8), 
+            (Screen.width - (Screen.width / 10 * 8)) / 2,
+            (Screen.height - (Screen.height / 10 * 3)) / 2,
+            (Screen.width / 10 * 8),
             (Screen.height / 100 * 20)
         );
     }
