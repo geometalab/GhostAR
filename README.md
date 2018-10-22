@@ -47,20 +47,6 @@ Add the path to the JDK the same way you did with the SDK in the Unity Editor.
 The default path to your JDK is `C:\Program Files\Java\jdk[version]`.
 [Version] referring to your currently installed JDK Version.
 
-## Problems while building the APK
-
-### SDK not found
-
-If you encounter errors while building the APK such as `Unable to list target platforms. Please make sure the android sdk path is correct. See the Console` double check if the Path to your SDK is correct,
-and refer to this [solution](http://answers.unity.com/answers/1326427/view.html).
-If that didn't work as well try to change the JDK Version to 8.
-You might have to uninstall the other JDK Version you have installed.
-Don't download the Android Native Development Kit (NDK) as it is not necessary/used for this project.
-
-### Gradle Build failed
-
-Change the build type in the _Player Settings_ to _Internal_.
-
 ## Vuforia
 
 This app uses the image recognition feature from Vuforia.
@@ -125,5 +111,19 @@ On your phone you have to activate the developer options and enable _USB debuggi
 Otherwise your phone is not able to build the app.
 
 If you made sure everything is in order, you can press the button _Build and Run_.
+
+## Problems while building the APK
+
+### SDK not found
+
+If you encounter errors while building the APK such as `Unable to list target platforms. Please make sure the android sdk path is correct. See the Console` double check if the Path to your SDK is correct,
+and refer to this [solution](http://answers.unity.com/answers/1326427/view.html).
+If that didn't work as well try to change the JDK Version to 8.
+You might have to uninstall the other JDK Version you have installed.
+Don't download the Android Native Development Kit (NDK) as it is not necessary/used for this project.
+
+### Gradle Build failed
+
+Change the build type in the _Player Settings_ to _Internal_.
 
 **Software made with love by Geometa Lab HSR for HSR Informatik (Computer Science).**
