@@ -74,15 +74,15 @@ You should try to achieve at least a rating of 4/5 stars.
 Everything below is problematic for Vuforia to recognise especially from distance.
 
 When you've filled your database with the images you want Vuforia to recognise,
-you can click on the "Download Database (All)" button on the top right and select Unity as your development platform.
+you can click on the _Download Database (All)_ button on the top right and select Unity as your development platform.
 Opening the downloaded file will import the images into your Unity Project.
 
 If you only want certain pictures from the database,
-you can also just check the box on the left of these pictures and click on the "Download Database" button.
+you can also just check the box on the left of these pictures and click on the _Download Database_ button.
 
 ## Create an Image Target in Unity
 
-To create a new image target in Unity, you have to go to "GameObject -> Vuforia -> Image".
+To create a new image target in Unity, you have to go to _GameObject_ -> _Vuforia_ -> _Image_.
 You should now a see a new Object in your Unity scene.
 On your right you should see that the Inspector openend the ImageTarget.
 
@@ -90,10 +90,10 @@ On your right you should see that the Inspector openend the ImageTarget.
 
 _Figure 2_
 
-Under the section "Image Target Behaviour" you can select your imported database and image you want to display on this object.
+Under the section _Image Target Behaviour_ you can select your imported database and image you want to display on this object.
 Now you have to drag a ghost object onto the image target.
 You can find pre-created ghosts under "Assets/Ghost/Objects".
-For each new ghost you have to add the components "Mesh Collider" and "Ghost Catcher (Script)".
+For each new ghost you have to add the components _Mesh Collider_ and _Ghost Catcher (Script)_.
 You also have to resize and reposition the ghost so it's in front of the image target.
 Otherwise you won't see the ghost appear in the app.
 
@@ -112,18 +112,18 @@ If you did everything right, you should see a Ghost appearing in front of the im
 
 The last step is to build the APK onto your phone.
 First connect your phone with a USB to your PC.
-Then you have open the build settings (Ctrl + Shift + B) and select "Android" as your platform and also select all scenes in the build.
+Then you have open the build settings (Ctrl + Shift + B) and select _Android_ as your platform and also select all scenes in the build.
 
 ![](https://md.coredump.ch/uploads/upload_b14e80f74558ab1856433d657a903111.png)
 
 _Figure 4_
 
-Now open the "Player Settings..." (on the bottom left in figure 3) and make sure that under "Other Settings -> Identifaction" the prerequistes aren't higher than your phone specifications.
-Also verify if under "XR Settings" the box "Vuforia Augmented Reality Support" is checked.
+Now open the _Player Settings..._ (on the bottom left in figure 3) and make sure that under _Other Settings_ -> _Identifaction_ the prerequistes aren't higher than your phone specifications.
+Also verify if under _XR Settings_ the box _Vuforia Augmented Reality Support_ is checked.
 
-On your phone you have to activate the developer options and enable "USB debugging".
+On your phone you have to activate the developer options and enable _USB debugging_.
 Otherwise your phone is not able to build the app.
 
-If you made sure everything is in order, you can press the button "Build and Run".
+If you made sure everything is in order, you can press the button _Build and Run_.
 
 **Software made with love by Geometa Lab HSR for HSR Informatik (Computer Science).**
