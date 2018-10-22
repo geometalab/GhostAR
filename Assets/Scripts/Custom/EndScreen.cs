@@ -53,7 +53,6 @@ public class EndScreen : MonoBehaviour
             score.countText.enabled = false;
             score.ghostColorText.enabled = false;
             powerUp.show = false;
-            score.refreshColor.gameObject.SetActive(false);
             bar.gameObject.SetActive(false);
 
             endScreenBackground.enabled = true;
@@ -90,7 +89,7 @@ public class EndScreen : MonoBehaviour
         if (score.caughtGhosts != 0)
         {
             LastCaughtTime.text = "Geister: " + score.caughtGhosts.ToString() + "\n";
-            LastCaughtTime.text += "Benutzte PowerUps: " + powerUp.usages.ToString();
+            LastCaughtTime.text += "Benutzte PowerUps: " + powerUp.GetUsagesAsString();
         }
     }
 

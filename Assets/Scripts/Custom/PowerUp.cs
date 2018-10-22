@@ -3,17 +3,18 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     [HideInInspector]
-    public int usages;
-    [HideInInspector]
     public bool show;
 
+    private int usages;
     private float timeShown;
+    private GhostCatcher ghost;
     private Text PowerUpNo;
     private GhostCatcher[] ghostCatchers;
     private Rect windowRect;
     private GUIStyle headerStyle;
     private GUIStyle labelStyle;
     private GUIStyle btnStyle;
+    private GUIStyle titleStyle;
 
     private void Start()
     {
@@ -22,14 +23,20 @@ public class PowerUp : MonoBehaviour
         show = false;
         PowerUpNo = GetComponent<Score>().PowerUpNotAvailable;
         ghostCatchers = FindObjectsOfType<GhostCatcher>();
-        windowRect = new Rect((Screen.width - (Screen.width / 10 * 8)) / 2, (Screen.height - (Screen.height / 10 * 6)) / 2, (Screen.width / 10 * 8), (Screen.height / 100 * 25));
+        windowRect = new Rect(
+            (Screen.width - (Screen.width / 10 * 8)) / 2,
+            (Screen.height - (Screen.height / 10 * 3)) / 2,
+            (Screen.width / 10 * 8),
+            (Screen.height / 100 * 20)
+        );
     }
 
-    private void OnClick()
+    public void OnClick(GhostCatcher ghost)
     {
         if (usages < 3)
         {
             show = true;
+            this.ghost = ghost;
         }
         else
         {
@@ -59,10 +66,14 @@ public class PowerUp : MonoBehaviour
         headerStyle = new GUIStyle("window");
         labelStyle = new GUIStyle("label");
         btnStyle = new GUIStyle("button");
+        titleStyle = new GUIStyle("label");
 
         headerStyle.border = new RectOffset(10, 10, 10, 10);
 
-        labelStyle.fontSize = 40;
+        titleStyle.fontSize = 60;
+        titleStyle.alignment = TextAnchor.MiddleCenter;
+
+        labelStyle.fontSize = 50;
         labelStyle.alignment = TextAnchor.MiddleCenter;
 
         btnStyle.fontSize = 40;
@@ -76,13 +87,36 @@ public class PowerUp : MonoBehaviour
     // This is the actual window.
     private void DialogWindow(int windowID)
     {
-        float y = windowRect.height / 5;
-        GUI.Label(new Rect(5, 5, windowRect.width, 100), "Do you really want to spend 50 points" + "\r\n" + "to reset the last ghost's color?", labelStyle);
+        float y = windowRect.height / 2;
 
-        if (GUI.Button(new Rect(5, y, windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "Yes", btnStyle))
+        Rect titleRect = new Rect(
+            5,
+            5,
+            windowRect.width,
+            windowRect.height / 100 * 20
+        );
+
+        Rect questionRectangle = new Rect(
+            5,
+            5,
+            windowRect.width,
+            windowRect.height / 100 * 70
+        );
+
+        GUI.Label(titleRect, "Nutzung: " + usages + "/3", titleStyle);
+        GUI.Label(questionRectangle, "\n\nWenn du diesen Geist fängst \r\nwirst du nur die halben Punkte bekommen.", labelStyle);
+
+        Rect yesButton = new Rect(
+            windowRect.width / 2 + 10,
+            windowRect.height / 100 * 70,
+            windowRect.width / 2 - 20,
+            (windowRect.height - (y + 2)) / 2
+        );
+
+        if (GUI.Button(yesButton, "Akzeptieren", btnStyle))
         {
             usages++;
-            foreach(GhostCatcher ghost in ghostCatchers)
+            foreach (GhostCatcher ghost in ghostCatchers)
             {
                 ghost.ColorOfLastCaughtGhost = " ";
             }
@@ -90,11 +124,31 @@ public class PowerUp : MonoBehaviour
             GetComponent<Score>().DecreaseScore(50);
             show = false;
             GetComponent<EndScreen>().SetEndScreenInfo();
+            if (ghost)
+            {
+                ghost.CatchGhost();
+            }
+            else
+            {
+                Debug.LogError("Couldn't find the ghost to catch");
+            }
         }
 
-        if (GUI.Button(new Rect(5, y + ((windowRect.height - y) / 2), windowRect.width - 10, (windowRect.height - (y + 2)) / 2), "No", btnStyle))
+        Rect noButton = new Rect(
+            10,
+            windowRect.height / 100 * 70,
+            windowRect.width / 2 - 20,
+            (windowRect.height - (y + 2)) / 2
+        );
+
+        if (GUI.Button(noButton, "Abbrechen", btnStyle))
         {
             show = false;
         }
+    }
+
+    public string GetUsagesAsString()
+    {
+        return usages.ToString();
     }
 }

@@ -5,18 +5,12 @@ using Vuforia;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField]
-    private UnityEngine.UI.Image prohibitedSign;
-
     public Text countText;
     public Text ghostColorText;
-
-    public Text prohibitedInfo;
     public Text PowerUpNotAvailable;
 
     [SerializeField]
     private Button submitUsernameButton;
-    public Button refreshColor;
 
     [HideInInspector]
     public int score;
@@ -35,8 +29,6 @@ public class Score : MonoBehaviour
         UpdateCountText();
         score = 0;
         caughtGhosts = 0;
-        prohibitedInfo.enabled = false;
-        prohibitedSign.enabled = false;
         PowerUpNotAvailable.enabled = false;
         arrayListValueOfHighscore = "Player Unknown";
         usernameInputField.gameObject.SetActive(false);
@@ -148,11 +140,5 @@ public class Score : MonoBehaviour
         {
             GetComponent<EndScreen>().SetBackButtonActive();
         }
-    }
-
-	public void ShowProhibited()
-    {
-        prohibitedSign.enabled = true;
-        prohibitedInfo.enabled = true;
     }
 }
