@@ -34,6 +34,15 @@ After Android Studio finished downloading the SDK, open GhostAR in your Unity Ed
 
 If you haven't already installed the Java Development Kit download it from the [Oracle Website](https://www.oracle.com/technetwork/java/javase/downloads/index.html). Add the path to the JDK the same way you did with the SDK in the Unity Editor. The default path to your JDK is `C:\Program Files\Java\jdk[version]`. [Version] referring to your currently installed JDK Version.
 
+## Problems while building the APK
+
+### SDK not found
+
+If you encounter errors while building the APK such as: `Unable to list target platforms. Please make sure the android sdk path is correct. See the Console` double check if the Path to your SDK is correct, and refer to this [solution](http://answers.unity.com/answers/1326427/view.html). If that didn't work as well try to change the JDK Version to 8. You might have to uninstall the other JDK Version you have installed. Don't download the Android Native Development Kit (NDK) as it is not necessary/used for this project.
+
+### Gradle Build failed
+
+Change the build type in the _Player Settings_ to _Internal_.
 
 ## Vuforia
 
