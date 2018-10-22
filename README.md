@@ -104,7 +104,7 @@ Then you have open the build settings (Ctrl + Shift + B) and select _Android_ as
 
 _Figure 4_
 
-Now open the _Player Settings..._ (on the bottom left in figure 3) and make sure that under _Other Settings_ -> _Identifaction_ the prerequistes aren't higher than your phone specifications.
+Now open the _Player Settings..._ (on the bottom left in figure 3) and make sure that under _Other Settings_ -> _Identifaction_ the prerequisites aren't higher than your phone specifications.
 Also verify if under _XR Settings_ the box _Vuforia Augmented Reality Support_ is checked.
 
 On your phone you have to activate the developer options and enable _USB debugging_.
