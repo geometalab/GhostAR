@@ -49,13 +49,13 @@ To create a new image target in Unity, you have to go to "GameObject -> Vuforia 
 
 ![Unity Inspector](https://md.coredump.ch/uploads/upload_5b0de54cc647b21de263c3489962a0db.png)
 
-_Figure 1_
+_Figure 2_
 
 Under the section "Image Target Behaviour" you can select your imported database and image you want to display on this object. Now you have to drag a ghost object onto the image target. You can find pre-created ghosts under "Assets/Ghost/Objects". For each new ghost you have to add the components "Mesh Collider" and "Ghost Catcher (Script)". You also have to resize and reposition the ghost so it's in front of the image target. Otherwise you won't see the ghost appear in the app.
 
 ![](https://md.coredump.ch/uploads/upload_b261dbdb2cc5c6c588e507520e7d0ee2.png)
 
-_Figure 2_
+_Figure 3_
 
 ## Testing the app
 
@@ -67,7 +67,7 @@ The last step is to build the APK onto your phone. First connect your phone with
 
 ![](https://md.coredump.ch/uploads/upload_b14e80f74558ab1856433d657a903111.png)
 
-_Figure 3_
+_Figure 4_
 
 Now open the "Player Settings..." (on the bottom left in figure 3) and make sure that under "Other Settings -> Identifaction" the prerequistes aren't higher than your phone specifications. Also verify if under "XR Settings" the box "Vuforia Augmented Reality Support" is checked.
 
