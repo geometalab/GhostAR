@@ -18,6 +18,18 @@ As mentioned above, you need Unity version 2018.1.4f for this app. Unity has a h
 
 A Vuforia SDK is included in the Unity installation.
 
+## Android Software Developers's Kit / Java Development Kit
+
+### Software Developers's Kit
+
+In order to build and run GhostAR on your Android device you need the specific Android SDK of your device. You can download the SDK with [Android Studio](https://developer.android.com/studio/). After installation open Android Studio and navigate to _Configure_ -> _SDK Manager_. Download the SDK of the Android device you want to use GhostAR on. (Currently the Android Version of your phone has to be at least 4.1 (Jelly Bean))
+
+![SDK Manager](https://md.coredump.ch/uploads/upload_29363a555588b9aa4e2882dff1d68be8.png)
+
+_Figure 1_
+
+After Android Studio finished downloading the SDK, open GhostAR in your Unity Editor and navigate to _Edit_ -> _Preferences..._ -> _External Tools_ and add the path to the SDK you just downloaded. Unity should detect the SDK automatically after you press _Browse_. If not the default Path to your SDK is: `C:/Users/[Username]/AppData/Local/Android/Sdk`. Replace [Username] with your Username without the brackets.
+
 
 ## Vuforia
 
