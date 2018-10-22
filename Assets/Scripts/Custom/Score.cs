@@ -7,6 +7,8 @@ public class Score : MonoBehaviour
 {
     [SerializeField]
     private UnityEngine.UI.Image prohibitedSign;
+    [SerializeField]
+    private Text usernamePrompt; 
 
     public Text countText;
     public Text ghostColorText;
@@ -25,6 +27,7 @@ public class Score : MonoBehaviour
 
     private ArrayList leaderBoardPoints;
     private string arrayListValueOfHighscore;
+    private float timeShown;
     [SerializeField]
     private InputField usernameInputField;
 
@@ -34,6 +37,7 @@ public class Score : MonoBehaviour
 
         UpdateCountText();
         score = 0;
+        timeShown = 0f;
         caughtGhosts = 0;
         prohibitedInfo.enabled = false;
         prohibitedSign.enabled = false;
@@ -42,6 +46,7 @@ public class Score : MonoBehaviour
         usernameInputField.gameObject.SetActive(false);
         submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
+        usernamePrompt.enabled = false;
 
         leaderBoardPoints = new ArrayList
         {
@@ -55,6 +60,20 @@ public class Score : MonoBehaviour
         };
     }
 
+    private void Update()
+    {
+        if (usernamePrompt.enabled)
+        {
+            timeShown += Time.deltaTime;
+
+            if(timeShown >= 0.75f)
+            {
+                usernamePrompt.enabled = false;
+                timeShown = 0f;
+            }
+        }
+    }
+
     private void OnSubmit()
     {
         if (usernameInputField.text != "")
@@ -63,6 +82,10 @@ public class Score : MonoBehaviour
             usernameInputField.gameObject.SetActive(false);
             submitUsernameButton.gameObject.SetActive(false);
             GetComponent<EndScreen>().SetBackButtonActive();
+        }
+        else
+        {
+            usernamePrompt.enabled = true;
         }
     }
 
