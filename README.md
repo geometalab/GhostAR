@@ -30,6 +30,10 @@ _Figure 1_
 
 After Android Studio finished downloading the SDK, open GhostAR in your Unity Editor and navigate to _Edit_ -> _Preferences..._ -> _External Tools_ and add the path to the SDK you just downloaded. Unity should detect the SDK automatically after you press _Browse_. If not the default Path to your SDK is: `C:/Users/[Username]/AppData/Local/Android/Sdk`. Replace [Username] with your Username without the brackets.
 
+### Java Development Kit
+
+If you haven't already installed the Java Development Kit download it from the [Oracle Website](https://www.oracle.com/technetwork/java/javase/downloads/index.html). Add the path to the JDK the same way you did with the SDK in the Unity Editor. The default path to your JDK is `C:\Program Files\Java\jdk[version]`. [Version] referring to your currently installed JDK Version.
+
 
 ## Vuforia
 
