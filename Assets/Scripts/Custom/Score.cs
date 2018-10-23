@@ -35,7 +35,6 @@ public class Score : MonoBehaviour
         caughtGhosts = 0;
         arrayListValueOfHighscore = "Player Unknown";
         submitUsernameButton.onClick.AddListener(OnSubmit);
-        usernamePrompt.enabled = false;
 
         leaderBoardPoints = new ArrayList
         {
