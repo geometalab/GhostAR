@@ -4,6 +4,8 @@ public class PowerUp : MonoBehaviour
 {
     [HideInInspector]
     public bool show;
+    [SerializeField]
+    private GameObject panel;
 
     private int usages;
     private float timeShown;
@@ -32,6 +34,7 @@ public class PowerUp : MonoBehaviour
                 "Akzeptieren",
                 "Abbrechen"
             );
+            panel.SetActive(true);
             show = true;
             this.ghost = ghost;
         }
@@ -65,11 +68,13 @@ public class PowerUp : MonoBehaviour
                 {
                     ResetGhostColor();
                     dialogue.Decision = "";
+                    panel.SetActive(false);
                 }
                 else
                 {
                     show = false;
                     dialogue.Decision = "";
+                    panel.SetActive(false);
                 }
             }
         }
