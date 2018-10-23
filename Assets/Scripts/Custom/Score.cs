@@ -34,7 +34,6 @@ public class Score : MonoBehaviour
         timeShown = 0f;
         caughtGhosts = 0;
         arrayListValueOfHighscore = "Player Unknown";
-        submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
         usernamePrompt.enabled = false;
 
