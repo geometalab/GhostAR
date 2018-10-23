@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +34,9 @@ public class Dialogue {
             (Screen.width / 10 * 8),
             (Screen.height / 100 * 20)
         );
+
+        SetDialogueStyle();
+        SetRectangles();
     }
 
     private void SetDialogueStyle()
@@ -89,9 +92,6 @@ public class Dialogue {
     
     public void CreateDialogue(int windowID)
     {
-        SetDialogueStyle();
-        SetRectangles();
-
         GUI.Label(titleRect, title, titleStyle);
         GUI.Label(questionRect, question, labelStyle);        
 
