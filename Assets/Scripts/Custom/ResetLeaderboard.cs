@@ -5,6 +5,8 @@ public class ResetLeaderboard : MonoBehaviour
 
     private bool show;
     private Dialogue dialogue;
+    [SerializeField]
+    private GameObject panel;
 
     // Use this for initialization
     void Start()
@@ -22,17 +24,20 @@ public class ResetLeaderboard : MonoBehaviour
             {
                 LeaderboardReset();
                 dialogue.Decision = "";
+                panel.SetActive(false);
             }
             else
             {
                 show = false;
                 dialogue.Decision = "";
+                panel.SetActive(false);
             }
         }
     }
 
     public void OnClick()
     {
+        panel.SetActive(true);
         show = true;
     }
 
