@@ -1,16 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Dialogue {
 
-    private string title;
-    private string question;
-    private string accept;
-    private string decline;
+    private readonly string title;
+    private readonly string question;
+    private readonly string accept;
+    private readonly string decline;
 
-    private Rect windowRect;
-    private GUIStyle headerStyle;
+    public string Decision { get; set; }
+
+    public Rect WindowRect { get; set; }
+    public GUIStyle HeaderStyle { get; set; }
     private GUIStyle labelStyle;
     private GUIStyle btnStyle;
     private GUIStyle titleStyle;
@@ -26,7 +28,7 @@ public class Dialogue {
         this.accept = accept;
         this.decline = decline;
 
-        windowRect = new Rect(
+        WindowRect = new Rect(
             (Screen.width - (Screen.width / 10 * 8)) / 2,
             (Screen.height - (Screen.height / 10 * 3)) / 2,
             (Screen.width / 10 * 8),
@@ -36,12 +38,12 @@ public class Dialogue {
 
     private void SetDialogueStyle()
     {
-        headerStyle = new GUIStyle("window");
+        HeaderStyle = new GUIStyle("window");
         labelStyle = new GUIStyle("label");
         btnStyle = new GUIStyle("button");
         titleStyle = new GUIStyle("label");
 
-        headerStyle.border = new RectOffset(10, 10, 10, 10);
+        HeaderStyle.border = new RectOffset(10, 10, 10, 10);
 
         titleStyle.fontSize = 60;
         titleStyle.alignment = TextAnchor.MiddleCenter;
@@ -54,34 +56,34 @@ public class Dialogue {
 
     private void SetRectangles()
     {
-        float y = windowRect.height / 2;
+        float y = WindowRect.height / 2;
 
         titleRect = new Rect(
             5,
             5,
-            windowRect.width,
-            windowRect.height / 100 * 20
+            WindowRect.width,
+            WindowRect.height / 100 * 20
         );
 
         questionRect = new Rect(
             5,
             5,
-            windowRect.width,
-            windowRect.height / 100 * 70
+            WindowRect.width,
+            WindowRect.height / 100 * 70
         );
 
         yesButton = new Rect(
-            windowRect.width / 2 + 10,
-            windowRect.height / 100 * 70,
-            windowRect.width / 2 - 20,
-            (windowRect.height - (y + 2)) / 2
+            WindowRect.width / 2 + 10,
+            WindowRect.height / 100 * 70,
+            WindowRect.width / 2 - 20,
+            (WindowRect.height - (y + 2)) / 2
         );
 
         noButton = new Rect(
             10,
-            windowRect.height / 100 * 70,
-            windowRect.width / 2 - 20,
-            (windowRect.height - (y + 2)) / 2
+            WindowRect.height / 100 * 70,
+            WindowRect.width / 2 - 20,
+            (WindowRect.height - (y + 2)) / 2
         );
     }
     
