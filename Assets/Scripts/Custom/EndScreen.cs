@@ -33,7 +33,6 @@ public class EndScreen : MonoBehaviour
 
         baseScore = 0;
         hasBeenBuilt = false;
-        LastCaughtTime.enabled = false;
     }
 
     /// <summary>
