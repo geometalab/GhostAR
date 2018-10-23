@@ -97,12 +97,12 @@ public class Dialogue {
 
         if (GUI.Button(yesButton, accept, btnStyle))
         {
-            //return some value
+            Decision = "true";
         }
 
         if (GUI.Button(noButton, decline, btnStyle))
         {
-            //return some value
+            Decision = "false";
         }
     }
 }
