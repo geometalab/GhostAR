@@ -13,7 +13,7 @@ public class Leaderboard : MonoBehaviour
         UpdateLeaderboardText();
     }
 
-    private void UpdateLeaderboardText()
+    public void UpdateLeaderboardText()
     {
         int savedPoint = PlayerPrefs.GetInt(point.name, 0);
 
@@ -21,8 +21,12 @@ public class Leaderboard : MonoBehaviour
         {
             point.text = savedPoint.ToString();
         }
+        else
+        {
+            point.text = "-";
+        }
 
-        string savedUsername = PlayerPrefs.GetString(username.name, "");
+        string savedUsername = PlayerPrefs.GetString(username.name, "-");
 
         if (!string.IsNullOrEmpty(savedUsername))
         {
