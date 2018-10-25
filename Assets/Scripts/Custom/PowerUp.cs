@@ -40,7 +40,7 @@ public class PowerUp : MonoBehaviour
         }
         else
         {
-            PowerUpNo.enabled = true;
+            PowerUpNo.gameObject.SetActive(true);
         }
     }
 
@@ -48,13 +48,13 @@ public class PowerUp : MonoBehaviour
     {
         if (PowerUpNo)
         {
-            if (PowerUpNo.enabled)
+            if (PowerUpNo.IsActive())
             {
                 timeShown += Time.deltaTime;
 
                 if (timeShown >= 0.75f)
                 {
-                    PowerUpNo.enabled = false;
+                    PowerUpNo.gameObject.SetActive(false);
                     timeShown = 0f;
                 }
             }

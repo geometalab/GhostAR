@@ -50,13 +50,13 @@ public class Score : MonoBehaviour
 
     private void Update()
     {
-        if (usernamePrompt.enabled)
+        if (usernamePrompt.IsActive())
         {
             timeShown += Time.deltaTime;
 
             if(timeShown >= 0.75f)
             {
-                usernamePrompt.enabled = false;
+                usernamePrompt.gameObject.SetActive(false);
                 timeShown = 0f;
             }
         }
@@ -73,7 +73,7 @@ public class Score : MonoBehaviour
         }
         else
         {
-            usernamePrompt.enabled = true;
+            usernamePrompt.gameObject.SetActive(true);
         }
     }
 
