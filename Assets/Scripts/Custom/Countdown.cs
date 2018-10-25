@@ -16,7 +16,8 @@ namespace HSR.GhostAR.GameTime
         private void Start()
         {
             GameHasEnded = false;
-            totalTime = 35f;
+            //Diese Variabel ändern um Spielzeit zu verlängern/verkürzen
+            totalTime = 20f;
             lastCaughtTime = 0;
             elapsedTime = 0;
         }
