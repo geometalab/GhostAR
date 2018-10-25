@@ -39,7 +39,7 @@ namespace HSR.GhostAR.GameTime
 
                 if (!GetComponent<EndScreen>().hasBeenBuilt)
                 {
-                    countDownText.enabled = false;
+                    countDownText.gameObject.SetActive(false);
                     endScreen.baseScore = GetComponent<Score>().score;
                     endScreen.ActivateEndScreen();
                 }

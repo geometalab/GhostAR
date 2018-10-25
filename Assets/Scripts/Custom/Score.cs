@@ -33,12 +33,8 @@ public class Score : MonoBehaviour
         score = 0;
         timeShown = 0f;
         caughtGhosts = 0;
-        PowerUpNotAvailable.enabled = false;
         arrayListValueOfHighscore = "Player Unknown";
-        usernameInputField.gameObject.SetActive(false);
-        submitUsernameButton.gameObject.SetActive(false);
         submitUsernameButton.onClick.AddListener(OnSubmit);
-        usernamePrompt.enabled = false;
 
         leaderBoardPoints = new ArrayList
         {

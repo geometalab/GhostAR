@@ -33,10 +33,6 @@ public class EndScreen : MonoBehaviour
 
         baseScore = 0;
         hasBeenBuilt = false;
-        backButton.gameObject.SetActive(false);
-        endScreenBackground.enabled = false;
-        FinalScore.enabled = false;
-        LastCaughtTime.enabled = false;
     }
 
     /// <summary>
@@ -50,14 +46,14 @@ public class EndScreen : MonoBehaviour
         {
             VuforiaBehaviour.Instance.enabled = false;
 
-            score.countText.enabled = false;
-            score.ghostColorText.enabled = false;
+            score.countText.gameObject.SetActive(false);
+            score.ghostColorText.gameObject.SetActive(false);
             powerUp.show = false;
             bar.gameObject.SetActive(false);
 
-            endScreenBackground.enabled = true;
-            FinalScore.enabled = true;
-            LastCaughtTime.enabled = true;
+            endScreenBackground.gameObject.SetActive(true);
+            FinalScore.gameObject.SetActive(true);
+            LastCaughtTime.gameObject.SetActive(true);
             int endscore = baseScore + countdown.GetTimeBonus();
 
             if (score.score > 0)
